@@ -1,20 +1,13 @@
+<<<<<<< Updated upstream
 import './App.css';
 import Topbar from "./Topbar";
 import Sidebar from './Sidebar';
+=======
+import { HomePage } from './pages/HomePage/HomePage';
+>>>>>>> Stashed changes
 
 function App() {
-  return (
-    <div className="App">
-      
-    <Topbar/>
-    <div className="app_body">
-        <Sidebar/>
-
-    </div>  
-
-
-    </div>
-  );
+  return <HomePage />;
 }
 
 export default App;
