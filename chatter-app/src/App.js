@@ -1,20 +1,7 @@
-import './App.css';
-import Topbar from "./components/Topbar/Topbar";
-import Sidebar from './components/Sidebar/Sidebar';
+import { HomePage } from './pages/HomePage/HomePage';
 
 function App() {
-  return (
-    <div className="App">
-      
-    <Topbar/>
-    <div className="app_body">
-        <Sidebar/>
-
-    </div>  
-
-
-    </div>
-  );
+  return <HomePage />;
 }
 
 export default App;
