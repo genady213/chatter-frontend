@@ -5,8 +5,9 @@ import CreateIcon from '@mui/icons-material/Create';
 import CommentIcon from '@mui/icons-material/Comment';
 import { Topbar } from '../../components/Topbar/Topbar';
 import { Sidebar } from '../../components/Sidebar/Sidebar';
+import { Footer } from '../../components/Footer/Footer.js';
 
-import Login from "../LoginPage/LoginPage"
+
 import Chat from "../../components/Middle/Chat"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
@@ -33,6 +34,8 @@ export function HomePage() {
 									
 								</Route>
 							</Routes>
+							
+      						<Footer />
 						</div>
 					</>
 				//)
