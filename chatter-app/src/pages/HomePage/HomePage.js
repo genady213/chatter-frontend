@@ -3,6 +3,7 @@ import '../../App.css';
 import { useStateValue } from "../../StateProvider";
 import CreateIcon from '@mui/icons-material/Create';
 import CommentIcon from '@mui/icons-material/Comment';
+
 import { Topbar } from '../../components/Topbar/Topbar';
 import { Sidebar } from '../../components/Sidebar/Sidebar';
 import { Footer } from '../../components/Footer/Footer.js';
@@ -11,10 +12,12 @@ import { Footer } from '../../components/Footer/Footer.js';
 import Chat from "../../components/Middle/Chat"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
+
 export function HomePage() {
   const [{ user }, dispatch] = useStateValue()
 
   return (
+
     <div className="app">
 			<Router>
 				{//!user ? (
@@ -43,4 +46,5 @@ export function HomePage() {
 			</Router>
 		</div>
 	);
+
 }

@@ -1,0 +1,16 @@
+.footerArea {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    padding: 20px 0;
+    background-color: var(--onlyfriends-color);
+    color: white;
+}
+
+.footerAboutUs {
+    display: flex;
+    /*textAlignVertical: "center";
+    padding: 0px 50px;*/
+    justify-content: center;
+}
