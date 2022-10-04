@@ -1,3 +1,9 @@
 body{
   --onlyfriends-color:#03c2fc;
+  overflow: hidden;
+}
+
+.app__body {
+	display: flex;
+	height: 100vh;
 }

@@ -1,9 +1,10 @@
 .sidebarOption {
     display: flex;
-    align-items: center;
-    font-size: 12px;
-    padding-left: 2px;
-    cursor: pointer;
+	align-items: center;
+	font-size: 12px;
+	padding: 7px 10px;
+	cursor: pointer;
+	transition: background-color 0.2s ease;
 }
 
 .sidebarOption:hover{
@@ -25,5 +26,8 @@
 }
 
 .sidebarOption > h3 {
+    display: flex;
+	align-items: center;
+	font-size: 15px;
     font-weight: 500;
 }
