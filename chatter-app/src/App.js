@@ -9,7 +9,7 @@ function App() {
         already logged in or not, so we can determine to send them to the login page or homepage (homepage is "/" for now*/}
       {/*Default page is Login page */}
       <Route path="/" element={<LoginPage />} />
-      <Route path="/Home" element={<HomePage />} />
+      <Route path="/Home*" element={<HomePage />} />
     </Routes>
   );
 }
