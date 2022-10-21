@@ -39,13 +39,13 @@ export function RegisterPage() {
         <form className="login-form">
           <h3>Register:</h3>
           <br></br>
-          <label for="name">Name:</label>
+          <label htmlFor="name">Name:</label>
           <input ref={myname} type="text" id="Name" placeholder="Name" ></input>
           <br></br>
-          <label for="fname">Username:</label>
+          <label htmlFor="fname">Username:</label>
           <input ref={myuser} type="text" id="Username" placeholder="Username" ></input>
           <br></br>
-          <label for="lname">Password:</label>
+          <label htmlFor="lname">Password:</label>
           <input ref={mypass} type="text" id="Password" placeholder="Password" ></input>
           <br></br>
           <button

@@ -42,17 +42,20 @@ export function LoginPage() {
         <form className="login-form">
           <h3>Login:</h3>
           <br></br>
-          <label for="fname">Username:</label>
+          <label htmlFor="fname">Username:</label>
           <input ref={myuser} type="text" id="Username" placeholder="Username"></input>
           <br></br>
-          <label for="lname">Password:</label>
+          <label htmlFor="lname">Password:</label>
           <input ref={mypass} type="text" id="Password" placeholder="Password"></input>
           <br></br>
           <button
             className="login-button"
             type="submit"
             value="Submit"
-            onClick={() => sendData(myuser.current.value,mypass.current.value)}
+            onClick={() => 
+              //routeChange
+              sendData(myuser.current.value,mypass.current.value)
+            }
           >
             Login
           </button>
