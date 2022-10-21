@@ -1,5 +1,8 @@
 import { HomePage } from './pages/HomePage/HomePage';
 import { LoginPage } from './pages/LoginPage/LoginPage';
+import { AboutUs } from "./pages/AboutUs/AboutUs";
+import { CompanyPolicy } from "./pages/CompanyPolicy/CompanyPolicy";
+import { TermsAndConditions } from "./pages/TermsAndConditions/TermsAndConditions";
 import { Route, Routes } from 'react-router-dom';
 
 function App() {
@@ -10,6 +13,9 @@ function App() {
       {/*Default page is Login page */}
       <Route path="/" element={<LoginPage />} />
       <Route path="/Home*" element={<HomePage />} />
+          <Route path="/AboutUs*" element={<AboutUs />} />
+          <Route path="/CompanyPolicy*" element={<CompanyPolicy />} />
+          <Route path="/TermsAndConditions*" element={<TermsAndConditions />} />
     </Routes>
   );
 }

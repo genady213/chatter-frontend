@@ -8,9 +8,12 @@
     color: white;
 }
 
-.footerAboutUs {
+.footerOptions {
     display: flex;
-    /*textAlignVertical: "center";
-    padding: 0px 50px;*/
     justify-content: center;
+    cursor: pointer;
+}
+
+.footerPadding {
+    margin-left: 20px;
 }
