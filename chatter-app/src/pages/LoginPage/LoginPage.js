@@ -13,6 +13,8 @@ import CreateIcon from '@mui/icons-material/Create';
 import CommentIcon from '@mui/icons-material/Comment';
 import axios from '../../axios';
 
+export const Messages = null;
+
 export function LoginPage() {
   const myuser = useRef('');
   const mypass = useRef('');
@@ -21,8 +23,7 @@ export function LoginPage() {
     const req = await axios.post('/user/login', {"username":user,"password":pass})
     .then((response) => {
       console.log(response);
-      let path = `/Home`;
-    navigate(path);
+      console.log(response.data.token);
     }, (error) => {
       console.log(error);
     });
@@ -52,10 +53,11 @@ export function LoginPage() {
             className="login-button"
             type="submit"
             value="Submit"
-            onClick={() => 
-              //routeChange
+            onClick={async() => {
               sendData(myuser.current.value,mypass.current.value)
-            }
+                routeChange();
+              
+            }}
           >
             Login
           </button>
