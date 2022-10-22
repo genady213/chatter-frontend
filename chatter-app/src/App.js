@@ -1,5 +1,8 @@
 import { HomePage } from './pages/HomePage/HomePage';
 import { LoginPage } from './pages/LoginPage/LoginPage';
+import { AboutUs } from "./pages/AboutUs/AboutUs";
+import { CompanyPolicy } from "./pages/CompanyPolicy/CompanyPolicy";
+import { TermsAndConditions } from "./pages/TermsAndConditions/TermsAndConditions";
 import { RegisterPage } from './pages/LoginPage/RegisterPage';
 import { Route, Routes } from 'react-router-dom';
 
@@ -10,6 +13,9 @@ function App() {
         already logged in or not, so we can determine to send them to the login page or homepage (homepage is "/" for now*/}
       {/*Default page is Login page */}
       <Route path="/" element={<LoginPage />} />
+          <Route path="/AboutUs/*" element={<AboutUs />} />
+          <Route path="/CompanyPolicy/*" element={<CompanyPolicy />} />
+          <Route path="/TermsAndConditions/*" element={<TermsAndConditions />} />
       <Route path="/Register/*" element={<RegisterPage />} />
       <Route path="/Home/*" element={<HomePage />} />
     </Routes>
