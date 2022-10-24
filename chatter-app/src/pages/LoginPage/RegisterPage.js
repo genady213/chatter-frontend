@@ -9,8 +9,7 @@ import {
   Navigate,
   useNavigate,
 } from 'react-router-dom';
-import CreateIcon from '@mui/icons-material/Create';
-import CommentIcon from '@mui/icons-material/Comment';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import axios from '../../axios';
 
 export function RegisterPage() {
@@ -24,19 +23,28 @@ export function RegisterPage() {
   };
 
   async function sendData(name, user, pass) {
+    var theans = "";
     const req = await axios.post('/user/signup', {"name":name,"username":user,"password":pass})
     .then((response) => {
       console.log(response);
+      theans = response.data.message;
+    return theans;
     }, (error) => {
       console.log(error);
     });
+    return theans;
   }
 
 
   return (
-    <div className="login-top-container">
-      <div className="login-form-container">
-        <form className="login-form">
+    <div className="register-top-container">
+      <div className="arrow"
+      onClick={() => {
+        routeChange()
+      }}>
+      <ArrowBackIosIcon/></div>
+      <div className="register-form-container">
+        <form className="register-form">
           <h3>Register:</h3>
           <br></br>
           <label htmlFor="name">Name:</label>
@@ -50,15 +58,21 @@ export function RegisterPage() {
           <br></br>
           <button
             className="register-button"
-            type="submit"
+            type="button"
             value="Submit"
-            onClick={() => {
-              routeChange();
-              sendData(myname.current.value,myuser.current.value,mypass.current.value);
+            onClick={async() => {
+              const theToken = await sendData(myname.current.value,myuser.current.value,mypass.current.value);
+              if(theToken == "Success"){
+                routeChange();}else{
+                 document.getElementById("error").style.visibility = 'visible';
+               } 
             }}
           >
             Register
           </button>
+          <div 
+          id = "error"
+          className="error-user">Error Creating Account</div>
           <br></br>
         </form>
       </div>
