@@ -13,20 +13,25 @@ import CreateIcon from '@mui/icons-material/Create';
 import CommentIcon from '@mui/icons-material/Comment';
 import axios from '../../axios';
 
-export const Messages = null;
+export var token = "";
 
 export function LoginPage() {
   const myuser = useRef('');
   const mypass = useRef('');
   let navigate = useNavigate();
-  async function sendData(user, pass) {
+   async function sendData(user, pass) {
+    var theans = "";
     const req = await axios.post('/user/login', {"username":user,"password":pass})
     .then((response) => {
       console.log(response);
-      console.log(response.data.token);
+      theans = response.data.message;
+      token = response.data.token;
+    axios.defaults.headers.common["Authorization"] = token;
+    return theans;
     }, (error) => {
       console.log(error);
     });
+    return theans;
   }
   const routeChange = () => {
     let path = `/Home`;
@@ -51,17 +56,21 @@ export function LoginPage() {
           <br></br>
           <button
             className="login-button"
-            type="submit"
+            type="button"
             value="Submit"
             onClick={async() => {
-              sendData(myuser.current.value,mypass.current.value)
-                routeChange();
-              
+              const theToken = await sendData(myuser.current.value,mypass.current.value);             
+              if(theToken == "Success"){
+               routeChange();}else{
+                document.getElementById("error").style.visibility = 'visible';
+              }              
             }}
           >
             Login
           </button>
-          <br></br>
+          <div 
+          id = "error"
+          className="error-user">Username or Password Incorrect</div>
           <a href="#"
           onClick={routeChangeRegister}
           >Create an Account

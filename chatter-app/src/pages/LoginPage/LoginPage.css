@@ -52,3 +52,9 @@
 .login-button:focus {
     background-color: #4c98e6;
 }
+
+.error-user{
+    visibility: hidden;
+    color: red;
+    font-size: small;
+}
