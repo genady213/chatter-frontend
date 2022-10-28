@@ -1,10 +1,12 @@
-body{
-  --onlyfriends-color:#03c2fc;
-  --onlyfriends-purple: #ab6df8;
-  overflow: hidden;
+body {
+	--onlyfriends-color: #2C2C2C;
+	--onlyfriends-grey: #454545;
+	--onlyfriends-light-grey: #858585;
+	overflow: hidden;
 }
 
 .app__body {
 	display: flex;
 	height: 100vh;
+	background-color: var(--onlyfriends-color);
 }

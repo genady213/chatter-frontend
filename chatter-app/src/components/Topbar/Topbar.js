@@ -10,17 +10,16 @@ export function Topbar() {
 
   const [{ user }] = useStateValue()
   
-  return (
-    <div className="topbar">
+    return (
+      <div>
+      <div className="topbar">
       <div className="left">
         <SettingsIcon />
         
-      </div>
-      <div className="search">
-        <SearchIcon />
-        
-        <input type="text" placeholder="Search for contacts" />
-      </div>
+                </div>
+
+      <img className="logo" src="/chatterLogo.png" width="75" height="75"/>
+
       <div className="right">
         <AccountCircleIcon
           className="profileAvatar"
@@ -28,6 +27,14 @@ export function Topbar() {
 					src={user?.photoURL}
         />
       </div>
-    </div>
+            </div>
+            <div className="searchSection">
+            <div className="search">
+                <input type="text" placeholder="Search" />
+            </div>
+                <button className="searchButton"><SearchIcon /></button>
+                </div>
+      </div>
+
   );
 }
