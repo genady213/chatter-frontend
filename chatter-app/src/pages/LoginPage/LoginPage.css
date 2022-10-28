@@ -1,21 +1,22 @@
 .login-top-container {
     display: flex;
     width: 100%;
-    height: 15rem;
+    height: 30vh;
     background-color: var(--onlyfriends-color);
     color: white;
 }
 
 .login-middle-container {
     background-color: var(--onlyfriends-grey);
-    height: 25rem;
+    height: 40vh;
 }
 .login-bottom-container {
     background-color: var(--onlyfriends-light-grey);
-    height:200rem;
+    height:30vh;
 }
 
 .logo{
+    width: 75px;
     margin-left: 100px;
     margin-right: 25px;
     margin-top: 75px;
@@ -28,15 +29,16 @@
     font-size: 55px;
 }
 
+
+
 .login-form-container{
-    display:flex;
-    flex-direction: row;
+    display: flex;
     justify-content: center;
     align-self: center;
     width: 30%;
     height: auto;
-    margin-left: 875px;
-    margin-right: 2rem;
+    margin-left: auto;
+    margin-right: 20px;
 }
 
 .loginFields {
@@ -73,7 +75,7 @@
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
-    margin-left:220px;
+    margin-left: 200px;
     bottom:22px;
 }
 
@@ -85,7 +87,6 @@
 .createAccountButton{
     color: #ffffff;
     text-decoration: none;
-
     margin-top: 150px;
     position:relative;
     bottom:15px;

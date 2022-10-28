@@ -49,10 +49,12 @@ export function LoginPage() {
               <h1 className="title">Chatter</h1>
           <div className="login-form-container">
             <form className="login-form">
-              <br></br>
+            <div 
+              id = "error"
+              className="error-user">Username or Password Incorrect</div>
                 <input ref={myuser} type="text" id="Username" placeholder="Username"className="loginFields"></input>
                 <br></br>
-                <input ref={mypass} type="text" id="Password" placeholder="Password" className="loginFields"></input>
+                <input ref={mypass} type="password" id="Password" placeholder="Password" className="loginFields"></input>
                 <br></br>
                 <div className="button">
               <button
@@ -70,9 +72,7 @@ export function LoginPage() {
                 Login
               </button>
               </div>
-              <div 
-              id = "error"
-              className="error-user">Username or Password Incorrect</div>
+              
               <a href="#"
               onClick={routeChangeRegister}
               className="createAccountButton"

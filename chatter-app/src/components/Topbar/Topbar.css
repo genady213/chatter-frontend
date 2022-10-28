@@ -78,3 +78,7 @@
     border-radius: 6px;
     margin-left: 4px;
 }
+
+.dropdown-content:hover {
+    cursor: pointer;
+}
