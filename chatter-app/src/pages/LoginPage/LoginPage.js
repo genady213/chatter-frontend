@@ -52,7 +52,7 @@ export function LoginPage() {
           <input ref={myuser} type="text" id="Username" placeholder="Username"></input>
           <br></br>
           <label htmlFor="lname">Password:</label>
-          <input ref={mypass} type="text" id="Password" placeholder="Password"></input>
+          <input ref={mypass} type="password" id="Password" placeholder="Password"></input>
           <br></br>
           <button
             className="login-button"
