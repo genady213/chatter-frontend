@@ -42,43 +42,53 @@ export function LoginPage() {
     navigate(path);
   };
 
-  return (
-    <div className="login-top-container">
-      <div className="login-form-container">
-        <form className="login-form">
-          <h3>Login:</h3>
-          <br></br>
-          <label htmlFor="fname">Username:</label>
-          <input ref={myuser} type="text" id="Username" placeholder="Username"></input>
-          <br></br>
-          <label htmlFor="lname">Password:</label>
-          <input ref={mypass} type="text" id="Password" placeholder="Password"></input>
-          <br></br>
-          <button
-            className="login-button"
-            type="button"
-            value="Submit"
-            onClick={async() => {
-              const theToken = await sendData(myuser.current.value,mypass.current.value);             
-              if(theToken == "Success"){
-               routeChange();}else{
-                document.getElementById("error").style.visibility = 'visible';
-              }              
-            }}
-          >
-            Login
-          </button>
-          <div 
-          id = "error"
-          className="error-user">Username or Password Incorrect</div>
-          <a href="#"
-          onClick={routeChangeRegister}
-          >Create an Account
-          </a>
-        </form>
-      </div>
+    return (
+      <div>
+          <div className="login-top-container">
+              <img className="logo" src="/chatterLogo.png" width="75" height="75" />
+              <h1 className="title">Chatter</h1>
+          <div className="login-form-container">
+            <form className="login-form">
+              <br></br>
+                <input ref={myuser} type="text" id="Username" placeholder="Username"className="loginFields"></input>
+                <br></br>
+                <input ref={mypass} type="text" id="Password" placeholder="Password" className="loginFields"></input>
+                <br></br>
+                <div className="button">
+              <button
+                className="login-button"
+                type="button"
+                value="Submit"
+                onClick={async() => {
+                  const theToken = await sendData(myuser.current.value,mypass.current.value);             
+                  if(theToken == "Success"){
+                   routeChange();}else{
+                    document.getElementById("error").style.visibility = 'visible';
+                  }              
+                }}
+              >
+                Login
+              </button>
+              </div>
+              <div 
+              id = "error"
+              className="error-user">Username or Password Incorrect</div>
+              <a href="#"
+              onClick={routeChangeRegister}
+              className="createAccountButton"
+              >Create Account
+              </a>
+            </form>
+          </div>
 
-      <Footer />
-    </div>
+          {/*<Footer />*/}
+            </div>
+            <div className="login-middle-container">
+
+            </div>
+            <div className="login-bottom-container">
+
+            </div>
+      </div>
   );
 }

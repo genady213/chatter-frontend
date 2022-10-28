@@ -12,10 +12,10 @@ import Chat from '../../components/Middle/Chat';
 import { Routes, Route } from 'react-router-dom';
 
 export function HomePage() {
-  const [{ user }, dispatch] = useStateValue();
+    const [{ user }, dispatch] = useStateValue();
 
-  return (
-    <div className="app">
+    return (
+        <div className="app">
       {
         //!user ? (
         //		<Login />
@@ -23,7 +23,7 @@ export function HomePage() {
         <>
           <Topbar />
           <div className="app__body">
-            <Sidebar />
+            {/*<Sidebar />*/}
             <Routes>
               <Route path="/room/:roomId" element={<Chat />}></Route>
               <Route
@@ -32,7 +32,7 @@ export function HomePage() {
               ></Route>
             </Routes>
 
-            <Footer />
+            {/*<Footer />*/}
           </div>
         </>
         //)
