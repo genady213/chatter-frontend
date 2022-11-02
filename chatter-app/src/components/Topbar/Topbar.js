@@ -31,7 +31,6 @@ export function Topbar() {
         <SettingsIcon />
         
                 </div>
-
       <img className="logo" src="/chatterLogo.png" width="75" height="75"/>
 
       <div className="right">
