@@ -36,21 +36,11 @@ export function Sidebar() {
 
   return (
 <div className="sidebar">
-			<div className="sidebar_header">
-				<div className="sidebar_info">
-					<h2>OnlyFriends Logo</h2>
-					<h3>
-						{user?.displayName}
-					</h3>
-				</div>
-				<CreateIcon />
-			</div>
-		<SidebarOption Icon={CommentIcon} title="Threads" /> 
-      	<SidebarOption Icon={ExpandMoreIcon} title="Channels" />
-			<hr />
+			
+		<SidebarOption Icon={CommentIcon} title="New Message" /> 
+      		<hr />
 
-			<SidebarOption Icon={AddIcon} addChannelOption title="Add channel" />
-
+			
 			{loading ||
 				channels.map((channel) => (
 					<SidebarOption

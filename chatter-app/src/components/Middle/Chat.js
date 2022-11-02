@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom"
 import "./Chat.css"
 import Message from "./Message"
 import ChatInput from "./ChatInput"
+import apiClient from "../../apiClient"
 
-//import db from "database";
 import StarBorderOutlineIcon from "@material-ui/icons/StarBorderOutlined"
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined"
 
@@ -13,22 +13,29 @@ export function Chat() {
 	const [roomDetails, setRoomDetails] = useState(null)
 	const [roomMessages, setRoomMessages] = useState([])
 	const [noMessages, setNoMessages] = useState(false)
-
-	useEffect(() => {/*
+	
+	async function sendData() {
+		var theans = "";
+		const req = await apiClient.post('/conversation', {"name":"BackendGang","users":[{"userId":"someId","username":"jdoe"}]})
+		.then((response) => {
+		  console.log(response);
+		  theans = response.data.message;
+		return theans;
+		}, (error) => {
+		  console.log(error);
+		});
+		return theans;
+	  }
+	  //roomId = sendData();
+	  apiClient.get('/conversation/' + roomId)
+	useEffect(() => {
+	
 		if (roomId) {
-			db.collection("rooms")
-				.doc(roomId)
-				.onSnapshot((snapshot) => setRoomDetails(snapshot.data()))
+			
 		}
 
-		db.collection("rooms")
-			.doc(roomId)
-			.collection("messages")
-			.orderBy("timestamp", "asc")
-			.onSnapshot((snapshot) =>
-				setRoomMessages(snapshot.docs.map((doc) => doc.data()))
-			)
-	*/}, [roomId])
+		
+	}, [roomId])
 
 	useEffect(() => {
 		if (!roomMessages.length) setNoMessages(true)

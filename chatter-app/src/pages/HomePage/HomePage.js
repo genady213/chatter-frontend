@@ -23,9 +23,9 @@ export function HomePage() {
         <>
           <Topbar />
           <div className="app__body">
-            {/*<Sidebar />*/}
+            <Sidebar />
             <Routes>
-              <Route path="/room/:roomId" element={<Chat />}></Route>
+              <Route path="/conversation/:roomId" element={<Chat />}></Route>
               <Route
                 path="/"
                 element={<div className="app__main"></div>}

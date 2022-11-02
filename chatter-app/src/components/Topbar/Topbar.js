@@ -5,6 +5,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { useStateValue } from "../../StateProvider";
 import axios from 'axios';
+import apiClient from '../../apiClient';
 import {
   BrowserRouter as Router,
   Routes,
@@ -19,8 +20,8 @@ export function Topbar() {
   
   let navigate = useNavigate();
   const logOut = () => {
-  axios.defaults.headers.common['Authorization'] = '';
-  delete axios.defaults.headers.common['Authorization'];
+    apiClient.defaults.headers.common['Authorization'] = '';
+  delete apiClient.defaults.headers.common['Authorization'];
     let path = `/`;
     navigate(path);
   };

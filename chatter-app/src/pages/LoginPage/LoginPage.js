@@ -12,6 +12,7 @@ import {
 import CreateIcon from '@mui/icons-material/Create';
 import CommentIcon from '@mui/icons-material/Comment';
 import axios from '../../axios';
+import apiClient from '../../apiClient';
 
 export var token = "";
 
@@ -26,7 +27,7 @@ export function LoginPage() {
       console.log(response);
       theans = response.data.message;
       token = response.data.token;
-    axios.defaults.headers.common["Authorization"] = token;
+      apiClient.defaults.headers.common["Authorization"] = token;
     return theans;
     }, (error) => {
       console.log(error);
