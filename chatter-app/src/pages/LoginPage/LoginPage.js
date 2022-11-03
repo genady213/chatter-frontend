@@ -1,6 +1,7 @@
 import React from 'react';
 import './LoginPage.css';
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
+import Cookies from 'js-cookie';
 import { Footer } from '../../components/Footer/Footer';
 import {
   BrowserRouter as Router,
@@ -12,6 +13,7 @@ import {
 import CreateIcon from '@mui/icons-material/Create';
 import CommentIcon from '@mui/icons-material/Comment';
 import axios from '../../axios';
+import apiClient from '../../apiClient';
 
 export var token = '';
 
@@ -19,6 +21,12 @@ export function LoginPage() {
   const myuser = useRef('');
   const mypass = useRef('');
   let navigate = useNavigate();
+  useEffect(() => {
+    if (Cookies.get('token') != null && Cookies.get('token') != '') {
+      let path = `/Home`;
+      navigate(path);
+    }
+  }, []);
   async function sendData(user, pass) {
     var theans = '';
     const req = await axios
@@ -28,7 +36,8 @@ export function LoginPage() {
           console.log(response);
           theans = response.data.message;
           token = response.data.token;
-          axios.defaults.headers.common['Authorization'] = token;
+          Cookies.set('userid', response.data.id);
+          apiClient.defaults.headers.common['Authorization'] = token;
           return theans;
         },
         (error) => {
@@ -51,10 +60,11 @@ export function LoginPage() {
       <div className="login-top-container">
         <img className="logo" src="/chatterLogo.png" width="75" height="75" />
         <h1 className="title">Chatter</h1>
-
         <div className="login-form-container">
           <form className="login-form">
-            <br></br>
+            <div id="error" className="error-user">
+              Username or Password Incorrect
+            </div>
             <input
               ref={myuser}
               type="text"
@@ -82,6 +92,7 @@ export function LoginPage() {
                     mypass.current.value
                   );
                   if (theToken == 'Success') {
+                    Cookies.set('token', token);
                     routeChange();
                   } else {
                     document.getElementById('error').style.visibility =
@@ -92,9 +103,7 @@ export function LoginPage() {
                 Login
               </button>
             </div>
-            <div id="error" className="error-user">
-              Username or Password Incorrect
-            </div>
+
             <a
               href="#"
               onClick={routeChangeRegister}

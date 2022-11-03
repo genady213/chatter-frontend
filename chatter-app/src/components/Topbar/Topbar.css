@@ -5,7 +5,7 @@
     padding: 20px 0;
     background-color: var(--chatter-black);
     color:white;
-    height:13rem;
+    height:15rem;
 }
 
 .left{
@@ -48,6 +48,7 @@
     align-items: center;
     justify-content: center;
     margin-top: -115px;
+    margin-bottom: 50px;
 }
 
 .search {
@@ -77,4 +78,8 @@
     background-color: white;
     border-radius: 6px;
     margin-left: 4px;
+}
+
+.dropdown-content:hover {
+    cursor: pointer;
 }

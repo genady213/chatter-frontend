@@ -69,13 +69,20 @@ export function RegisterPage() {
             className="register-loginFields"
           ></input>
           <br></br>
-
+          <label htmlFor="fname">Username:</label>
+          <input
+            ref={myuser}
+            type="text"
+            id="Username"
+            placeholder="Username"
+          ></input>
+          <br></br>
+          <label htmlFor="lname">Password:</label>
           <input
             ref={mypass}
             type="password"
             id="Password"
             placeholder="Password"
-            className="register-loginFields"
           ></input>
           <br></br>
           <button

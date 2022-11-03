@@ -1,4 +1,5 @@
 .chat {
+	background-color: white;
 	flex: 0.7;
 	flex-grow: 1;
 	overflow-y: auto;

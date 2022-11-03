@@ -16,6 +16,7 @@
 }
 
 .logo{
+    width: 75px;
     margin-left: 100px;
     margin-right: 25px;
     margin-top: 75px;
@@ -33,14 +34,13 @@
 
 
 .login-form-container{
-    display:flex;
-    flex-direction: row;
+    display: flex;
     justify-content: center;
     align-self: center;
     width: 30%;
     height: auto;
-    margin-left: 875px;
-    margin-right: 2rem;
+    margin-left: auto;
+    margin-right: 20px;
 }
 
 .loginFields {
@@ -77,7 +77,7 @@
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
-    margin-left:220px;
+    margin-left: 200px;
     bottom:22px;
 }
 
@@ -89,7 +89,6 @@
 .createAccountButton{
     color: #ffffff;
     text-decoration: none;
-
     margin-top: 150px;
     position:relative;
     bottom:15px;

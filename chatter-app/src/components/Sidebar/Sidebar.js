@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useCallback, setData } from "react"
 import './Sidebar.css';
 import CreateIcon from '@mui/icons-material/Create';
 import SidebarOption from './SidebarOption';
 import CommentIcon from '@mui/icons-material/Comment';
 import { useStateValue } from "../../StateProvider";
-//import db from "database";
+import Cookies from "js-cookie";
+import apiClient from "../../apiClient";
 
 
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
@@ -17,16 +18,21 @@ export function Sidebar() {
 	const [channels, setChannels] = useState([])
 	const [loading, setLoading] = useState("")
 
-	useEffect(() => {/*
-		db.collection("rooms").onSnapshot((snapshot) => {
-			setChannels(
-				snapshot.docs.map((doc) => ({
-					id: doc.id,
-					name: doc.data().name,
-				}))
-			)
-		})
-	*/}, [])
+	const fetchData = useCallback(async () => {
+		const data = await apiClient.get('/user/' + Cookies.get('userid')
+		, { headers: {"Authorization" : `${Cookies.get('token')}`} })
+		.then((response) => {
+			  console.log(response.data.conversations);
+			  setChannels(response.data.conversations);
+		}, (error) => {
+		  console.log(error);
+		});
+	  
+	  }, [])
+
+	useEffect(() => {
+		fetchData()
+	}, [fetchData])
 
 	useEffect(() => {
 		if (!channels.length)
@@ -36,27 +42,17 @@ export function Sidebar() {
 
   return (
 <div className="sidebar">
-			<div className="sidebar_header">
-				<div className="sidebar_info">
-					<h2>OnlyFriends Logo</h2>
-					<h3>
-						{user?.displayName}
-					</h3>
-				</div>
-				<CreateIcon />
-			</div>
-		<SidebarOption Icon={CommentIcon} title="Threads" /> 
-      	<SidebarOption Icon={ExpandMoreIcon} title="Channels" />
-			<hr />
+			
+		<SidebarOption Icon={CommentIcon} title="New Message" /> 
+      		<hr />
 
-			<SidebarOption Icon={AddIcon} addChannelOption title="Add channel" />
-
+			
 			{loading ||
 				channels.map((channel) => (
 					<SidebarOption
-						key={channel.id}
-						title={channel.name}
-						id={channel.id}
+						key={channel.conversationID}
+						title={channel.conversationName}
+						id={channel._id}
 					/>
 					
 				))}
