@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 20px 0;
-    background-color: var(--onlyfriends-color);
+    background-color: var(--chatter-black);
     color:white;
     height:13rem;
 }

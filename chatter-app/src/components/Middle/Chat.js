@@ -1,20 +1,21 @@
-import React, { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
-import "./Chat.css"
-import Message from "./Message"
-import ChatInput from "./ChatInput"
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import './Chat.css';
+import Message from './Message';
+import ChatInput from './ChatInput';
 
 //import db from "database";
-import StarBorderOutlineIcon from "@material-ui/icons/StarBorderOutlined"
-import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined"
+import StarBorderOutlineIcon from '@material-ui/icons/StarBorderOutlined';
+import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 
 export function Chat() {
-	const { roomId } = useParams()
-	const [roomDetails, setRoomDetails] = useState(null)
-	const [roomMessages, setRoomMessages] = useState([])
-	const [noMessages, setNoMessages] = useState(false)
+  const { roomId } = useParams();
+  const [roomDetails, setRoomDetails] = useState(null);
+  const [roomMessages, setRoomMessages] = useState([]);
+  const [noMessages, setNoMessages] = useState(false);
 
-	useEffect(() => {/*
+  useEffect(() => {
+    /*
 		if (roomId) {
 			db.collection("rooms")
 				.doc(roomId)
@@ -28,45 +29,46 @@ export function Chat() {
 			.onSnapshot((snapshot) =>
 				setRoomMessages(snapshot.docs.map((doc) => doc.data()))
 			)
-	*/}, [roomId])
+	*/
+  }, [roomId]);
 
-	useEffect(() => {
-		if (!roomMessages.length) setNoMessages(true)
-		else setNoMessages(false)
-	}, [roomMessages])
+  useEffect(() => {
+    if (!roomMessages.length) setNoMessages(true);
+    else setNoMessages(false);
+  }, [roomMessages]);
 
-	const chatMessages = noMessages ? (
-		<Message noMessages={noMessages} />
-	) : (
-		roomMessages.map(({ message, timestamp, user, userImage }) => (
-			<Message
-				message={message}
-				timestamp={timestamp}
-				user={user}
-				userImage={userImage}
-				key={timestamp}
-			/>
-		))
-	)
+  const chatMessages = noMessages ? (
+    <Message noMessages={noMessages} />
+  ) : (
+    roomMessages.map(({ message, timestamp, user, userImage }) => (
+      <Message
+        message={message}
+        timestamp={timestamp}
+        user={user}
+        userImage={userImage}
+        key={timestamp}
+      />
+    ))
+  );
 
-	return (
-		<div className="chat">
-			<div className="chat_header">
-				<div className="chat_headerLeft">
-					<h4 className="chat_channelName">
-						<span># {roomDetails?.name}</span>
-						<StarBorderOutlineIcon />
-					</h4>
-				</div>
-				<div className="chat_headerRight">
-					<p>
-						<InfoOutlinedIcon /> Details
-					</p>
-				</div>
-			</div>
-			<div className="chat_messages">{chatMessages}</div>
-			<ChatInput channelName={roomDetails?.name} channelId={roomId} />
-		</div>
-	)
+  return (
+    <div className="chat">
+      <div className="chat_header">
+        <div className="chat_headerLeft">
+          <h4 className="chat_channelName">
+            <span># {roomDetails?.name}</span>
+            <StarBorderOutlineIcon />
+          </h4>
+        </div>
+        <div className="chat_headerRight">
+          <p>
+            <InfoOutlinedIcon /> Details
+          </p>
+        </div>
+      </div>
+      <div className="chat_messages">{chatMessages}</div>
+      <ChatInput channelName={roomDetails?.name} channelId={roomId} />
+    </div>
+  );
 }
-export default Chat
+export default Chat;

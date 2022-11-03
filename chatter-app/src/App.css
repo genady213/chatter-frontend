@@ -1,12 +1,14 @@
-body {
-	--onlyfriends-color: #2C2C2C;
-	--onlyfriends-grey: #454545;
-	--onlyfriends-light-grey: #858585;
-	overflow: hidden;
+body{
+  --chatter-black: #2c2c2c;
+  --chatter-brown: #454545;
+  --chatter-grey: #858585;
+  --chatter-button-gray: #757575;
+  --chatter-text-field: #e6e6e6;
+  overflow: hidden;
 }
 
 .app__body {
 	display: flex;
 	height: 100vh;
-	background-color: var(--onlyfriends-color);
+	background-color: var(--chatter-black);
 }

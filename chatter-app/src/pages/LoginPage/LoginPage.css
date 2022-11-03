@@ -2,16 +2,16 @@
     display: flex;
     width: 100%;
     height: 15rem;
-    background-color: var(--onlyfriends-color);
+    background-color: var(--chatter-black);
     color: white;
 }
 
 .login-middle-container {
-    background-color: var(--onlyfriends-grey);
+    background-color: var(--chatter-brown);
     height: 25rem;
 }
 .login-bottom-container {
-    background-color: var(--onlyfriends-light-grey);
+    background-color: var(--chatter-grey);
     height:200rem;
 }
 
@@ -22,11 +22,15 @@
 
 }
 
+@import url(https://fonts.googleapis.com/css?family=Pacifico);
+
 .title{
     margin-top: 75px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: 'Pacifico', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 55px;
+    font-weight: 10;
 }
+
 
 .login-form-container{
     display:flex;
@@ -51,7 +55,7 @@
 }
 
 .login-button {
-    background-color: var(--onlyfriends-light-grey);
+    background-color: var(--chatter-button-gray);
     border-radius: 8px;
     border-style: none;
     box-sizing: border-box;
