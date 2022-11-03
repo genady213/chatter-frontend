@@ -1,6 +1,7 @@
 import React from 'react';
 import './LoginPage.css';
-import {useRef} from 'react';
+import {useRef, useEffect} from 'react';
+import Cookies from 'js-cookie';
 import { Footer } from '../../components/Footer/Footer';
 import {
   BrowserRouter as Router,
@@ -20,6 +21,11 @@ export function LoginPage() {
   const myuser = useRef('');
   const mypass = useRef('');
   let navigate = useNavigate();
+  useEffect(() => {
+    if(Cookies.get('token') != null && Cookies.get('token') != ''){
+      let path = `/Home`;
+      navigate(path);
+    }}, []);
    async function sendData(user, pass) {
     var theans = "";
     const req = await axios.post('/user/login', {"username":user,"password":pass})
@@ -27,6 +33,7 @@ export function LoginPage() {
       console.log(response);
       theans = response.data.message;
       token = response.data.token;
+      Cookies.set('userid', response.data.id);
       apiClient.defaults.headers.common["Authorization"] = token;
     return theans;
     }, (error) => {
@@ -64,8 +71,10 @@ export function LoginPage() {
                 value="Submit"
                 onClick={async() => {
                   const theToken = await sendData(myuser.current.value,mypass.current.value);             
-                  if(theToken == "Success"){
-                   routeChange();}else{
+                  if(theToken == "Success"){           
+                    Cookies.set('token', token);
+                   routeChange();
+                  }else{
                     document.getElementById("error").style.visibility = 'visible';
                   }              
                 }}

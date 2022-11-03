@@ -4,7 +4,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SearchIcon from '@mui/icons-material/Search';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { useStateValue } from "../../StateProvider";
-import axios from 'axios';
+import Cookies from "js-cookie";
 
 import {useRef} from 'react';
 import apiClient from '../../apiClient';
@@ -25,6 +25,8 @@ export function Topbar() {
   const logOut = () => {
     apiClient.defaults.headers.common['Authorization'] = '';
   delete apiClient.defaults.headers.common['Authorization'];
+  Cookies.set('token', '');
+  Cookies.set('userid', '');
     let path = `/`;
     navigate(path);
   };
