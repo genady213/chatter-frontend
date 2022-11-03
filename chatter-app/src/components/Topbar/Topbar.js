@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from "react"
 import './Topbar.css';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SearchIcon from '@mui/icons-material/Search';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { useStateValue } from "../../StateProvider";
 import axios from 'axios';
+
+import {useRef} from 'react';
 import apiClient from '../../apiClient';
 import {
   BrowserRouter as Router,
@@ -15,7 +17,8 @@ import {
 } from 'react-router-dom';
 
 export function Topbar() {
-
+  const [users, setUsers] = useState([])
+  const searchQuery = useRef('');
   const [{ user }] = useStateValue()
   
   let navigate = useNavigate();
@@ -52,8 +55,14 @@ export function Topbar() {
             </div>
             <div className="searchSection">
             <div className="search">
-                <input type="text" placeholder="Search" />
+                <input ref={searchQuery} type="text"  placeholder="Search" className="searchFields" />
             </div>
+            <div className="dropdownsearch">
+              {users.map((userid, username) => (
+					username
+					
+				))}</div>
+
                 <button className="searchButton"><SearchIcon /></button>
                 </div>
       </div>

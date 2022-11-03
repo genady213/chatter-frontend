@@ -16,7 +16,7 @@ export function Chat() {
 	
 	async function sendData() {
 		var theans = "";
-		const req = await apiClient.post('/conversation', {"name":"BackendGang","users":[{"userId":"someId","username":"jdoe"}]})
+		const req = await apiClient.post('/conversation', {"name":"FrontendGang","users":[{"userId":"someId","username":"genady"}]})
 		.then((response) => {
 		  console.log(response);
 		  theans = response.data.message;
@@ -28,6 +28,7 @@ export function Chat() {
 	  }
 	  //roomId = sendData();
 	  apiClient.get('/conversation/' + roomId)
+
 	useEffect(() => {
 	
 		if (roomId) {
