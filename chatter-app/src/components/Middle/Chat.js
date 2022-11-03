@@ -3,32 +3,50 @@ import { useParams } from "react-router-dom"
 import "./Chat.css"
 import Message from "./Message"
 import ChatInput from "./ChatInput"
-
-//import db from "database";
+import apiClient from "../../apiClient"
 import StarBorderOutlineIcon from "@material-ui/icons/StarBorderOutlined"
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined"
+import Cookies from "js-cookie"
+import axios from "axios"
 
 export function Chat() {
 	const { roomId } = useParams()
 	const [roomDetails, setRoomDetails] = useState(null)
 	const [roomMessages, setRoomMessages] = useState([])
 	const [noMessages, setNoMessages] = useState(false)
-
-	useEffect(() => {/*
+	
+	async function sendData() {
+		var theans = "";
+		const req = await apiClient.post('/conversation', {"name":"FrontendGang","users":[{"userId":Cookies.get('userid'),"username":"genady"},{"userId":"63630e8b73a6da95a6aae2f5","username":"genady2"}]}
+		,{ headers: {"Authorization" : `${Cookies.get('token')}`} })
+		.then((response) => {
+		  console.log(response);
+		  theans = response.data.message;
+		return theans;
+		}, (error) => {
+		  console.log(error);
+		});
+		return theans;
+	  }
+	  //roomId = sendData();
+	  //console.log(Cookies.get('token')); 63631a6573a6da95a6aae327
+	  //sendData();
+	useEffect(() => {
+	
 		if (roomId) {
-			db.collection("rooms")
-				.doc(roomId)
-				.onSnapshot((snapshot) => setRoomDetails(snapshot.data()))
+			const req = apiClient.get('/conversation/' + roomId
+	  , { headers: {"Authorization" : `${Cookies.get('token')}`} })
+	  .then((response) => {
+			console.log(response.data.messages);
+			setRoomMessages(response.data.messages);
+	  }, (error) => {
+		console.log(error);
+	  }); 
+
 		}
 
-		db.collection("rooms")
-			.doc(roomId)
-			.collection("messages")
-			.orderBy("timestamp", "asc")
-			.onSnapshot((snapshot) =>
-				setRoomMessages(snapshot.docs.map((doc) => doc.data()))
-			)
-	*/}, [roomId])
+		
+	}, [roomId])
 
 	useEffect(() => {
 		if (!roomMessages.length) setNoMessages(true)
@@ -38,12 +56,11 @@ export function Chat() {
 	const chatMessages = noMessages ? (
 		<Message noMessages={noMessages} />
 	) : (
-		roomMessages.map(({ message, timestamp, user, userImage }) => (
+		roomMessages.map(({ message, timestamp, user }) => (
 			<Message
 				message={message}
 				timestamp={timestamp}
 				user={user}
-				userImage={userImage}
 				key={timestamp}
 			/>
 		))
