@@ -8,11 +8,11 @@ import {
     useNavigate,
   } from 'react-router-dom';
 
-function SidebarOption({ key, title, id, Icon}) {
+function SidebarOption({ keys, title, id, Icon}) {
     
   let navigate = useNavigate();
     const routeChange = () => {
-        let path = `/Home/conversation/` + key;
+        let path = `/Home/conversation/` + keys;
         navigate(path);
       };
     return(
