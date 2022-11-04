@@ -50,7 +50,7 @@ export function Sidebar() {
 			{loading ||
 				channels.map((channel) => (
 					<SidebarOption
-						key={channel.conversationID}
+						keys={channel.conversationID}
 						title={channel.conversationName}
 						id={channel._id}
 					/>
