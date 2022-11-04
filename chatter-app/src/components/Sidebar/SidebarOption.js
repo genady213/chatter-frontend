@@ -8,7 +8,7 @@ import {
     useNavigate,
   } from 'react-router-dom';
 
-function SidebarOption({ key, title, Icon}) {
+function SidebarOption({ key, title, id, Icon}) {
     
   let navigate = useNavigate();
     const routeChange = () => {

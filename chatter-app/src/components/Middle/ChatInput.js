@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { useStateValue } from "../../StateProvider";
-//import db from "database";
+import Cookies from "js-cookie";
+import apiClient from "../../apiClient";
 
 export function ChatInput({ channelName, channelId }) {
 	const [input, setInput] = useState("")
@@ -12,13 +13,14 @@ export function ChatInput({ channelName, channelId }) {
 		if (!input) return false
 
 		if (channelId) {
-			/*db.collection("rooms").doc(channelId).collection("messages").add({
-				message: input,
-				timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-				user: user.displayName,
-				userImage: user.photoURL,
-			})
-		*/}
+			const req = apiClient.put('/conversation/' + channelId, 
+			{"userId":Cookies.get('userid'),"message":input}
+	  , { headers: {"Authorization" : `${Cookies.get('token')}`} })
+	  .then((response) => {
+			console.log(response);
+	  }, (error) => {
+		console.log(error);
+	  });}
 
 		setInput("")
 	}
