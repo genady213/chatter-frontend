@@ -17,7 +17,7 @@ export function Chat() {
 	
 	async function sendData() {
 		var theans = "";
-		const req = await apiClient.post('/conversation', {"name":"FrontendGang","users":[{"userId":Cookies.get('userid'),"username":"genady"},{"userId":"63630e8b73a6da95a6aae2f5","username":"genady2"}]}
+		const req = await apiClient.post('/conversation', {"name":"Test","users":[{"userId":Cookies.get('userid'),"username":"genady"},{"userId":"63630e8b73a6da95a6aae2f5","username":"genady2"}]}
 		,{ headers: {"Authorization" : `${Cookies.get('token')}`} })
 		.then((response) => {
 		  console.log(response);
@@ -39,6 +39,7 @@ export function Chat() {
 	  .then((response) => {
 			console.log(response.data.messages);
 			setRoomMessages(response.data.messages);
+			setRoomDetails(response.data);
 	  }, (error) => {
 		console.log(error);
 	  }); 
