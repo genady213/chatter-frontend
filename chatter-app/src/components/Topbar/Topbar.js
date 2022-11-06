@@ -92,13 +92,13 @@ export function Topbar() {
             className="searchFields"
           />
           <div className="dropdownsearch">
-            {users.slice(0, 7).map((userid, username) => (
+            {users.slice(0, 7).map((user) => (
               <div
-                onClick={() => onSearch(userid)}
+                onClick={() => onSearch(user)}
                 className="dropdown-content"
-                key={userid}
+                key={user._id}
               >
-                {username}
+                {user.username}
               </div>
             ))}
           </div>
