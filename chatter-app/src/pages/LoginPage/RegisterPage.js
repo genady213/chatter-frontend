@@ -69,20 +69,12 @@ export function RegisterPage() {
             className="register-loginFields"
           ></input>
           <br></br>
-          <label htmlFor="fname">Username:</label>
-          <input
-            ref={myuser}
-            type="text"
-            id="Username"
-            placeholder="Username"
-          ></input>
-          <br></br>
-          <label htmlFor="lname">Password:</label>
           <input
             ref={mypass}
             type="password"
             id="Password"
             placeholder="Password"
+            className="register-loginFields"
           ></input>
           <br></br>
           <button
@@ -104,7 +96,13 @@ export function RegisterPage() {
           >
             Create Account
           </button>
-          <a href="#">Already have an account? Login</a>
+          <a
+            onClick={() => {
+              routeChange();
+            }}
+          >
+            Already have an account? Login
+          </a>
           <div id="error" className="error-user">
             Error Creating Account
           </div>

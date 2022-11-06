@@ -9,11 +9,11 @@ export function ChatInput({ channelName, channelId }) {
   const [input, setInput] = useState('');
   const [{ user }] = useStateValue();
 
+  /*
   async function sendData(name, user, userImage, message, time) {
     var theans = '';
     const req = await axios
       .post('/home/uniqueTokenForChat', {
-        name: name,
         username: user,
         userImage: userImage,
         userMessage: message,
@@ -30,7 +30,7 @@ export function ChatInput({ channelName, channelId }) {
         }
       );
     return theans;
-  }
+  }*/
 
   const sendMessage = (e) => {
     e.preventDefault();
@@ -45,7 +45,7 @@ export function ChatInput({ channelName, channelId }) {
 				userImage: user.photoURL,
 			})
 		*/
-      sendData(name, username, userImage, input);
+      //sendData(name, username, userImage, input, time);
     }
 
     setInput('');

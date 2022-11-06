@@ -6,13 +6,12 @@
     color: white;
 }
 
-.login-middle-container {
+.login-container {
     background-color: var(--chatter-brown);
-    height: 25rem;
-}
-.login-bottom-container {
-    background-color: var(--chatter-grey);
-    height:200rem;
+    height:100%;
+    width:100%;
+    z-index: -100;
+    position:fixed;
 }
 
 .logo{
@@ -40,7 +39,7 @@
     width: 30%;
     height: auto;
     margin-left: auto;
-    margin-right: 20px;
+    margin-right: 30px;
 }
 
 .loginFields {

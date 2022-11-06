@@ -56,7 +56,7 @@ export function LoginPage() {
   };
 
   return (
-    <div>
+    <div className="login-container">
       <div className="login-top-container">
         <img className="logo" src="/chatterLogo.png" width="75" height="75" />
         <h1 className="title">Chatter</h1>
@@ -113,11 +113,9 @@ export function LoginPage() {
             </a>
           </form>
         </div>
-
-        <Footer />
       </div>
       <div className="login-middle-container"></div>
-      <div className="login-bottom-container"></div>
+      <Footer />
     </div>
   );
 }
