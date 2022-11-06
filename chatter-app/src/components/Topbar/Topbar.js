@@ -21,22 +21,23 @@ export function Topbar() {
   const searchQuery = useRef('');
   const [{ user }] = useStateValue();
 
-  const [searchUser, setSearchUser] = useState('');
+  const [currInput, setCurrInput] = useState('');
 
-  const peoples = [
-    'steve',
-    'bill',
-    'sally',
-    'vincent',
-    'genady',
-    'chris',
-    'ashwin',
-    'varghese',
-    'arnesh',
-    'brian',
-    'ryan',
-    'ken',
-  ];
+  const getUsers = async () => {
+    const request = await apiClient //+ searchQuery.current.value
+      .get('/user/search/' + searchQuery.current.value, {
+        headers: { Authorization: `${Cookies.get('token')}` },
+      })
+      .then(
+        (response) => {
+          setUsers(response.data); //fill in the array with users
+          console.log(users);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  };
 
   let navigate = useNavigate();
   const logOut = () => {
@@ -48,16 +49,14 @@ export function Topbar() {
     navigate(path);
   };
 
-  //Value of the input is put into the current state. searchUser
   const onChange = (event) => {
-    setSearchUser(event.target.value);
-    //can have axios call here to check if that's a valid user
+    setCurrInput(event.target.value); //this is the current input user has typed in
+    getUsers(); //sends that current input to make a call to get an array of matching users to that input
   };
 
   //When the user clicks the search button to look for that user
-  const onSearch = (searchName) => {
-    setSearchUser(searchName);
-    console.log('searching for ', searchName);
+  const onSearch = (searchUser) => {
+    console.log('searching for', searchUser);
     //axios call here to bring back data from that user and do whatever, i.e load a chat message with this individual
   };
 
@@ -85,40 +84,30 @@ export function Topbar() {
       <div className="searchSection">
         <div className="search">
           <input
-            /*ref={searchQuery} Can add back later*/
+            ref={searchQuery}
             type="text"
-            value={searchUser}
+            value={currInput}
             onChange={onChange}
             placeholder="Search"
             className="searchFields"
           />
           <div className="dropdownsearch">
-            {/*{users.map((userid, username) => username)} */}
-            {peoples
-              .filter((person) => {
-                const searchTerm = searchUser.toLowerCase();
-                const userName = person.toLowerCase();
-
-                return (
-                  searchTerm &&
-                  userName.startsWith(searchTerm) &&
-                  userName !== searchTerm
-                );
-              })
-              .slice(0, 8)
-              .map((person) => (
-                <div
-                  onClick={() => onSearch(person)}
-                  className="dropdown-content"
-                  key={person}
-                >
-                  {person}
-                </div>
-              ))}
+            {users.slice(0, 7).map((userid, username) => (
+              <div
+                onClick={() => onSearch(userid)}
+                className="dropdown-content"
+                key={userid}
+              >
+                {username}
+              </div>
+            ))}
           </div>
         </div>
 
-        <button className="searchButton" onClick={() => onSearch(searchUser)}>
+        <button
+          className="searchButton"
+          onClick={() => onSearch(searchQuery.current.value)}
+        >
           <SearchIcon />
         </button>
       </div>
