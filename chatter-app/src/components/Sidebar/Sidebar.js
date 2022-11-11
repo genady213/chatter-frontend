@@ -30,6 +30,7 @@ export function Sidebar() {
 	const routeChange = () => {
         let path = `/Home/conversation/` + redirect;
         navigate(path);
+        //window.location.reload(true);
       };
 	
 	const [{ user }] = useStateValue()

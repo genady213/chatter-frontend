@@ -7,7 +7,6 @@ import {
     Navigate,
     useNavigate,
   } from 'react-router-dom';
-import { PusherClient } from '../../client';
 import Cookies from 'js-cookie';
 
 function SidebarOption({ keys, title, id, Icon}) {
@@ -15,7 +14,6 @@ function SidebarOption({ keys, title, id, Icon}) {
   let navigate = useNavigate();
     const routeChange = () => {
         let path = `/Home/conversation/` + keys;
-        //PusherClient(Cookies.get('userid'),keys)
         navigate(path);
       };
     return(

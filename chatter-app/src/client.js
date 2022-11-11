@@ -8,8 +8,8 @@ export const pusher = new Pusher(PusherAppKey, {
     cluster: "us2",
     encrypted: true,
     forceTLS: true,
-});
-/*
+});/*
+export const PusherClient = (convoid) => {
 pusher.connection.bind("connected", () => {
     console.log("Websocket Connected");
 });
@@ -17,7 +17,7 @@ pusher.connection.bind("connected", () => {
 pusher.connection.bind("unavailable", () => {
     console.log("Websocket Disconnected");
 });
-export const PusherClient = (convoid) => {
+
 const channel = pusher.subscribe(Cookies.get('userid'));
 createConversationBind(convoid);
 

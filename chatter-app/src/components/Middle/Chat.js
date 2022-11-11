@@ -8,7 +8,6 @@ import StarBorderOutlineIcon from "@material-ui/icons/StarBorderOutlined"
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined"
 import Cookies from "js-cookie"
 import axios from "axios"
-import { PusherClient } from "../../client"
 import Pusher from 'pusher-js';
 import { pusher } from "../../client"
 
@@ -17,9 +16,19 @@ export function Chat() {
 	const [roomDetails, setRoomDetails] = useState(null)
 	const [roomMessages, setRoomMessages] = useState([])
 	const [noMessages, setNoMessages] = useState(false)
+
+	function pusherUpdate() {
+	apiClient.get('/conversation/' + roomId
+	  , { headers: {"Authorization" : `${Cookies.get('token')}`} })
+	  .then((response) => {
+			console.log(response.data.messages);
+			if (!roomMessages.length){setNoMessages(false)}
+			setRoomMessages(response.data.messages);
+	  }, (error) => {
+		console.log(error);
+	  });};
 	
 ///////////////////////PUSHER
-
 
 	pusher.connection.bind("connected", () => {
 		console.log("Websocket Connected");
@@ -40,16 +49,8 @@ function createConversationBind(channelID) {
     const conversationChannel = pusher.subscribe(channelID);
     conversationChannel.bind("message", function (data) {
         console.log("New Message Recieved: " + JSON.stringify(data));
-		const req = apiClient.get('/conversation/' + roomId
-	  , { headers: {"Authorization" : `${Cookies.get('token')}`} })
-	  .then((response) => {
-			console.log(response.data.messages);
-			if (!roomMessages.length) setNoMessages(false)
-			setRoomMessages(response.data.messages);
-	  }, (error) => {
-		console.log(error);
-	  }); 
-    });
+		pusherUpdate();
+    }, conversationChannel.unbind());
     conversationChannel.bind("status", function (data) {
         console.log("New Status Received: " + JSON.stringify(data));
     });
