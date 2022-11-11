@@ -65,7 +65,7 @@ export function LoginPage() {
                 <br></br>
                 <input ref={mypass} type="password" id="Password" placeholder="Password" className="loginFields"></input>
                 <br></br>
-                <div className="button">
+                <div className="buttondiv">
               <button
                 className="login-button"
                 type="button"
