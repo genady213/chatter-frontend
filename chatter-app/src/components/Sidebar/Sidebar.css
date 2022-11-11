@@ -1,26 +1,108 @@
 .sidebar {
     flex: 0.3;
-	padding-bottom: 60px;
+    padding-bottom: 60px;
     color: white;
     background-color: var(--onlyfriends-color);
     border-top: 1px solid #52acc7;
-	overflow-y: auto;
-	overflow-x: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
-.sidebar hr {
-	margin: 10px 0;
-	border: 1px solid #52acc7;
-	border-top: none;
-	border-right: none;
-	border-left: none;
-}
+    .sidebar hr {
+        margin: 10px 0;
+        border: 1px solid #52acc7;
+        border-top: none;
+        border-right: none;
+        border-left: none;
+    }
 
-.sidebar_header{
+.sidebar_header {
     display: flex;
     justify-content: space-between;
-	align-items: center;
+    align-items: center;
     border-bottom: 1px solid #52acc7;
     padding-bottom: 10px;
     padding: 13px;
+}
+
+.commentIcon {
+    width: 15px;
+    height: 15px;
+    position: relative;
+    left: 20px;
+}
+
+.button {
+    background-color: var(--onlyfriends-color);
+    border: none;
+    color: white;
+    padding: 25px;
+    position: relative;
+    font-size: 20px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.modal {
+    font-size: 12px;
+    border: 1px solid black;
+    background-color: white;
+}
+
+    .modal > .header {
+        width: 100%;
+        border-bottom: 1px solid black;
+        font-size: 18px;
+        text-align: center;
+        background-color: var(--onlyfriends-color);
+        color: white;
+    }
+
+    .modal > .content {
+        width: 100%;
+        padding: 10px 5px;
+    }
+
+    .modal > .textFieldArea {
+        width: 100%;
+        padding: 0px 30px;
+        margin: auto;
+        text-align: center;
+    }
+
+.textFieldArea .textFields {
+    margin: 20px;
+    right: 30px;
+}
+
+.popupButtonArea {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 60px;
+    padding-bottom: 20px;
+}
+
+.popupButton {
+    background-color: var(--onlyfriends-grey);
+    border: none;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    width: 100%;
+    cursor: pointer;
+}
+
+.modal > .close {
+    cursor: pointer;
+    position: absolute;
+    display: block;
+    padding: 2px 5px;
+    line-height: 20px;
+    right: -10px;
+    top: -10px;
+    font-size: 24px;
+    background: #ffffff;
+    border-radius: 18px;
+    border: 1px solid #cfcece;
 }
