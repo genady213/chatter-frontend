@@ -34,6 +34,7 @@ export function LoginPage() {
       theans = response.data.message;
       token = response.data.token;
       Cookies.set('userid', response.data.id);
+      Cookies.set('username', user);
       apiClient.defaults.headers.common["Authorization"] = token;
     return theans;
     }, (error) => {
@@ -64,7 +65,7 @@ export function LoginPage() {
                 <br></br>
                 <input ref={mypass} type="password" id="Password" placeholder="Password" className="loginFields"></input>
                 <br></br>
-                <div className="button">
+                <div className="buttondiv">
               <button
                 className="login-button"
                 type="button"

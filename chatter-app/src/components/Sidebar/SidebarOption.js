@@ -7,12 +7,13 @@ import {
     Navigate,
     useNavigate,
   } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
-function SidebarOption({ key, title, Icon}) {
+function SidebarOption({ keys, title, id, Icon}) {
     
   let navigate = useNavigate();
     const routeChange = () => {
-        let path = `/Home/conversation/` + key;
+        let path = `/Home/conversation/` + keys;
         navigate(path);
       };
     return(

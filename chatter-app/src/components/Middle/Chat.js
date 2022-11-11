@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useEvent, useRef } from "react"
 import { useParams } from "react-router-dom"
 import "./Chat.css"
 import Message from "./Message"
@@ -8,29 +8,55 @@ import StarBorderOutlineIcon from "@material-ui/icons/StarBorderOutlined"
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined"
 import Cookies from "js-cookie"
 import axios from "axios"
+import Pusher from 'pusher-js';
+import { pusher } from "../../client"
 
 export function Chat() {
 	const { roomId } = useParams()
 	const [roomDetails, setRoomDetails] = useState(null)
 	const [roomMessages, setRoomMessages] = useState([])
 	const [noMessages, setNoMessages] = useState(false)
+
+	function pusherUpdate() {
+	apiClient.get('/conversation/' + roomId
+	  , { headers: {"Authorization" : `${Cookies.get('token')}`} })
+	  .then((response) => {
+			console.log(response.data.messages);
+			if (!roomMessages.length){setNoMessages(false)}
+			setRoomMessages(response.data.messages);
+	  }, (error) => {
+		console.log(error);
+	  });};
 	
-	async function sendData() {
-		var theans = "";
-		const req = await apiClient.post('/conversation', {"name":"FrontendGang","users":[{"userId":Cookies.get('userid'),"username":"genady"},{"userId":"63630e8b73a6da95a6aae2f5","username":"genady2"}]}
-		,{ headers: {"Authorization" : `${Cookies.get('token')}`} })
-		.then((response) => {
-		  console.log(response);
-		  theans = response.data.message;
-		return theans;
-		}, (error) => {
-		  console.log(error);
-		});
-		return theans;
-	  }
-	  //roomId = sendData();
-	  //console.log(Cookies.get('token')); 63631a6573a6da95a6aae327
-	  //sendData();
+///////////////////////PUSHER
+
+	pusher.connection.bind("connected", () => {
+		console.log("Websocket Connected");
+	});
+	const channel = pusher.subscribe(Cookies.get('userid'));
+createConversationBind(roomId);
+
+channel.bind("user-event", function (data) {
+    switch (data.eventType) {
+        case "create-conversation":
+            createConversationBind(data.conversationId);
+            break;
+    }
+    console.log(data);
+});
+
+function createConversationBind(channelID) {
+    const conversationChannel = pusher.subscribe(channelID);
+    conversationChannel.bind("message", function (data) {
+        console.log("New Message Recieved: " + JSON.stringify(data));
+		pusherUpdate();
+    }, conversationChannel.unbind());
+    conversationChannel.bind("status", function (data) {
+        console.log("New Status Received: " + JSON.stringify(data));
+    });
+};
+////////////////////////	
+
 	useEffect(() => {
 	
 		if (roomId) {
@@ -39,6 +65,7 @@ export function Chat() {
 	  .then((response) => {
 			console.log(response.data.messages);
 			setRoomMessages(response.data.messages);
+			setRoomDetails(response.data);
 	  }, (error) => {
 		console.log(error);
 	  }); 
@@ -53,15 +80,17 @@ export function Chat() {
 		else setNoMessages(false)
 	}, [roomMessages])
 
+
+
 	const chatMessages = noMessages ? (
 		<Message noMessages={noMessages} />
 	) : (
-		roomMessages.map(({ message, timestamp, user }) => (
+		roomMessages.map(({ message, _id, timeSent}) => (
 			<Message
 				message={message}
-				timestamp={timestamp}
-				user={user}
-				key={timestamp}
+				timestamp={timeSent}
+				user={_id}
+				key={timeSent}
 			/>
 		))
 	)

@@ -1,6 +1,6 @@
 .sidebar {
     flex: 0.3;
-    padding-bottom: 60px;
+    padding-bottom: 240px;
     color: white;
     background-color: var(--onlyfriends-color);
     border-top: 1px solid #52acc7;
@@ -25,22 +25,21 @@
     padding: 13px;
 }
 
-.commentIcon {
-    width: 15px;
-    height: 15px;
-    position: relative;
-    left: 20px;
-}
+
 
 .button {
     background-color: var(--onlyfriends-color);
     border: none;
     color: white;
-    padding: 25px;
+    padding: 18px;
     position: relative;
-    font-size: 20px;
+    font-size: 18px;
     width: 100%;
     cursor: pointer;
+}
+.button:hover{
+    opacity: 0.9;
+    background-color: #52acc7;
 }
 
 .modal {
@@ -105,4 +104,10 @@
     background: #ffffff;
     border-radius: 18px;
     border: 1px solid #cfcece;
+}
+
+.error-user{
+    visibility: hidden;
+    color: red;
+    font-size: small;
 }
