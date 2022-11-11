@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useEvent } from "react"
 import { useParams } from "react-router-dom"
 import "./Chat.css"
 import Message from "./Message"
@@ -8,6 +8,7 @@ import StarBorderOutlineIcon from "@material-ui/icons/StarBorderOutlined"
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined"
 import Cookies from "js-cookie"
 import axios from "axios"
+import { PusherClient } from "../../client"
 
 export function Chat() {
 	const { roomId } = useParams()
@@ -54,15 +55,22 @@ export function Chat() {
 		else setNoMessages(false)
 	}, [roomMessages])
 
+///////////////////////////////////////////
+	PusherClient(Cookies.get('userid'),roomId);
+	
+	useEvent(Cookies.get('userid'), "New Message Recieved: ", ({ data }) =>
+    setRoomMessages((messages) => [...messages, data])
+  );////////////////////////
+
 	const chatMessages = noMessages ? (
 		<Message noMessages={noMessages} />
 	) : (
-		roomMessages.map(({ message, timestamp, user }) => (
+		roomMessages.map(({ message, _id, timeSent}) => (
 			<Message
 				message={message}
-				timestamp={timestamp}
-				user={user}
-				key={timestamp}
+				timestamp={timeSent}
+				user={_id}
+				key={timeSent}
 			/>
 		))
 	)
