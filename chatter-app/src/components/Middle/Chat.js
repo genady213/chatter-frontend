@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useEvent } from "react"
+import React, { useState, useEffect, useEvent, useRef } from "react"
 import { useParams } from "react-router-dom"
 import "./Chat.css"
 import Message from "./Message"
@@ -9,6 +9,8 @@ import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined"
 import Cookies from "js-cookie"
 import axios from "axios"
 import { PusherClient } from "../../client"
+import Pusher from 'pusher-js';
+import { pusher } from "../../client"
 
 export function Chat() {
 	const { roomId } = useParams()
@@ -16,22 +18,44 @@ export function Chat() {
 	const [roomMessages, setRoomMessages] = useState([])
 	const [noMessages, setNoMessages] = useState(false)
 	
-	async function sendData() {
-		var theans = "";
-		const req = await apiClient.post('/conversation', {"name":"Test","users":[{"userId":Cookies.get('userid'),"username":"genady"},{"userId":"63630e8b73a6da95a6aae2f5","username":"genady2"}]}
-		,{ headers: {"Authorization" : `${Cookies.get('token')}`} })
-		.then((response) => {
-		  console.log(response);
-		  theans = response.data.message;
-		return theans;
-		}, (error) => {
-		  console.log(error);
-		});
-		return theans;
-	  }
-	  //roomId = sendData();
-	  //console.log(Cookies.get('token')); 63631a6573a6da95a6aae327
-	  //sendData();
+///////////////////////PUSHER
+
+
+	pusher.connection.bind("connected", () => {
+		console.log("Websocket Connected");
+	});
+	const channel = pusher.subscribe(Cookies.get('userid'));
+createConversationBind(roomId);
+
+channel.bind("user-event", function (data) {
+    switch (data.eventType) {
+        case "create-conversation":
+            createConversationBind(data.conversationId);
+            break;
+    }
+    console.log(data);
+});
+
+function createConversationBind(channelID) {
+    const conversationChannel = pusher.subscribe(channelID);
+    conversationChannel.bind("message", function (data) {
+        console.log("New Message Recieved: " + JSON.stringify(data));
+		const req = apiClient.get('/conversation/' + roomId
+	  , { headers: {"Authorization" : `${Cookies.get('token')}`} })
+	  .then((response) => {
+			console.log(response.data.messages);
+			if (!roomMessages.length) setNoMessages(false)
+			setRoomMessages(response.data.messages);
+	  }, (error) => {
+		console.log(error);
+	  }); 
+    });
+    conversationChannel.bind("status", function (data) {
+        console.log("New Status Received: " + JSON.stringify(data));
+    });
+};
+////////////////////////	
+
 	useEffect(() => {
 	
 		if (roomId) {
@@ -55,10 +79,7 @@ export function Chat() {
 		else setNoMessages(false)
 	}, [roomMessages])
 
-///////////////////////////////////////////
-	//PusherClient(Cookies.get('userid'),roomId);
-	
-////////////////////////
+
 
 	const chatMessages = noMessages ? (
 		<Message noMessages={noMessages} />

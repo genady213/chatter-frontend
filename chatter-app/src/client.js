@@ -1,14 +1,15 @@
 import Pusher from 'pusher-js';
+import Cookies from 'js-cookie';
 
 const PusherAppKey = "abe185cdca80fe92b3cb";
 
 
-/*export const pusher = new Pusher(PusherAppKey, {
+export const pusher = new Pusher(PusherAppKey, {
     cluster: "us2",
     encrypted: true,
     forceTLS: true,
 });
-
+/*
 pusher.connection.bind("connected", () => {
     console.log("Websocket Connected");
 });
@@ -16,8 +17,8 @@ pusher.connection.bind("connected", () => {
 pusher.connection.bind("unavailable", () => {
     console.log("Websocket Disconnected");
 });
-export const PusherClient = (userid, convoid) => {
-const channel = pusher.subscribe(userid);
+export const PusherClient = (convoid) => {
+const channel = pusher.subscribe(Cookies.get('userid'));
 createConversationBind(convoid);
 
 channel.bind("user-event", function (data) {

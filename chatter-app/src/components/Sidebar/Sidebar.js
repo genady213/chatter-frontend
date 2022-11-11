@@ -12,8 +12,9 @@ import TextField from '@mui/material/TextField';
 import {
 	BrowserRouter as Router,
 	useNavigate,
+	useParams
   } from 'react-router-dom';
-
+import { pusher } from "../../client";
 
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
 import AddIcon from "@material-ui/icons/Add"
@@ -23,7 +24,6 @@ import LoopIcon from "@material-ui/icons/Loop"
 var redirect = "";
 
 export function Sidebar() {
-
 	const convoName = useRef();
 	const userToChat = useRef();
 	let navigate = useNavigate();
@@ -31,6 +31,27 @@ export function Sidebar() {
         let path = `/Home/conversation/` + redirect;
         navigate(path);
       };
+	
+	const [{ user }] = useStateValue()
+	const [channels, setChannels] = useState([])
+	const [loading, setLoading] = useState("")
+
+	const fetchData = useCallback(async () => {
+		const data = await apiClient.get('/user/' + Cookies.get('userid')
+			, { headers: { "Authorization": `${Cookies.get('token')}` } })
+			.then((response) => {
+				console.log(response.data.conversations);
+				setChannels(response.data.conversations);
+			}, (error) => {
+				console.log(error);
+			});
+
+	}, [])
+
+	useEffect(() => {
+		fetchData()
+	}, [fetchData])
+
 	async function sendData(convo, user) {
 		var theans = "";
 		var firstuserid = "";
@@ -55,31 +76,13 @@ export function Sidebar() {
 		  console.log(response);
 		  theans = response.data.message;
 		  redirect = response.data.conversationId;
+			fetchData()
 		return theans;
 		}, (error) => {
 		  console.log(error);
 		});
 		return theans;
 	  }
-	const [{ user }] = useStateValue()
-	const [channels, setChannels] = useState([])
-	const [loading, setLoading] = useState("")
-
-	const fetchData = useCallback(async () => {
-		const data = await apiClient.get('/user/' + Cookies.get('userid')
-			, { headers: { "Authorization": `${Cookies.get('token')}` } })
-			.then((response) => {
-				console.log(response.data.conversations);
-				setChannels(response.data.conversations);
-			}, (error) => {
-				console.log(error);
-			});
-
-	}, [])
-
-	useEffect(() => {
-		fetchData()
-	}, [fetchData])
 
 	useEffect(() => {
 		if (!channels.length)
