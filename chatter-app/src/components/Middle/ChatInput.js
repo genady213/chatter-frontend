@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { useStateValue } from "../../StateProvider";
 import Cookies from "js-cookie";
 import apiClient from "../../apiClient";
+import "./ChatInput.css";
 
 export function ChatInput({ channelName, channelId }) {
 	const [input, setInput] = useState("")

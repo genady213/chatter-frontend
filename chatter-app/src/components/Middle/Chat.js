@@ -56,7 +56,7 @@ export function Chat() {
 	}, [roomMessages])
 
 ///////////////////////////////////////////
-	PusherClient(Cookies.get('userid'),roomId);
+	//PusherClient(Cookies.get('userid'),roomId);
 	
 ////////////////////////
 

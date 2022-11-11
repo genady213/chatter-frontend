@@ -3,7 +3,7 @@ import Pusher from 'pusher-js';
 const PusherAppKey = "abe185cdca80fe92b3cb";
 
 
-export const pusher = new Pusher(PusherAppKey, {
+/*export const pusher = new Pusher(PusherAppKey, {
     cluster: "us2",
     encrypted: true,
     forceTLS: true,
@@ -37,6 +37,6 @@ function createConversationBind(channelID) {
     conversationChannel.bind("status", function (data) {
         console.log("New Status Received: " + JSON.stringify(data));
     });
-};};
+};};*/
 
 //export default PusherClient(userid, convoid);

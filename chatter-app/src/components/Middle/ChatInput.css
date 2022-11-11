@@ -13,6 +13,7 @@
 	bottom: 30px;
 	width: 60%;
 	border: 1px solid gray;
+    outline: none;
 	border-radius: 3px;
 	padding: 20px;
 }

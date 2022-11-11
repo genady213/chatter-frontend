@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, setData } from "react"
+import React, { useState, useEffect, useCallback, setData, useRef } from "react"
 import Popup from 'reactjs-popup';
 import './Sidebar.css';
 import CreateIcon from '@mui/icons-material/Create';
@@ -9,15 +9,58 @@ import Cookies from "js-cookie";
 import apiClient from "../../apiClient";
 import client from "../../client";
 import TextField from '@mui/material/TextField';
+import {
+	BrowserRouter as Router,
+	useNavigate,
+  } from 'react-router-dom';
 
 
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
 import AddIcon from "@material-ui/icons/Add"
 import LoopIcon from "@material-ui/icons/Loop"
 
+
+var redirect = "";
+
 export function Sidebar() {
 
-
+	const convoName = useRef();
+	const userToChat = useRef();
+	let navigate = useNavigate();
+	const routeChange = () => {
+        let path = `/Home/conversation/` + redirect;
+        navigate(path);
+      };
+	async function sendData(convo, user) {
+		var theans = "";
+		var firstuserid = "";
+		var firstuser = "";
+		const request = await apiClient
+      .get('/user/search/' + user, {
+        headers: { Authorization: `${Cookies.get('token')}` },
+      })
+      .then(
+        (response) => {
+			console.log(response);
+			firstuser = response.data[0].username;
+			firstuserid = response.data[0]._id;
+        },
+        (error) => {
+          console.log(error);
+        }
+      )
+		const req = await apiClient.post('/conversation', {"name":convo,"users":[{"userId":Cookies.get('userid'),"username":Cookies.get('username')},{"userId":firstuserid,"username":firstuser}]}
+		,{ headers: {"Authorization" : `${Cookies.get('token')}`} })
+		.then((response) => {
+		  console.log(response);
+		  theans = response.data.message;
+		  redirect = response.data.conversationId;
+		return theans;
+		}, (error) => {
+		  console.log(error);
+		});
+		return theans;
+	  }
 	const [{ user }] = useStateValue()
 	const [channels, setChannels] = useState([])
 	const [loading, setLoading] = useState("")
@@ -62,10 +105,21 @@ export function Sidebar() {
 						</button>
 						<div className="header"> Chatter someone up! </div>
 						<div className="textFieldArea">
-							<TextField className="textFields" label="Conversation Name" />
-							<TextField className="textFields" label="Who are you chatting with?" />
+							<TextField className="textFields" label="Conversation Name" inputRef={convoName} />
+							<TextField className="textFields" label="Who are you chatting with?" inputRef={userToChat} />
+							<div id = "error" className="error-user">Conversation Create Failed</div>
 							<div className="popupButtonArea">
-								<button className="popupButton">Start Chatting</button>
+								<button className="popupButton"
+								onClick={async() => {
+									const redirectSuccess = await sendData(convoName.current.value,userToChat.current.value);
+									if(redirectSuccess == "Conversation Created"){      
+									   routeChange();
+									   close();
+									  }else{
+										document.getElementById("error").style.visibility = 'visible';
+									  }              
+									}}
+								>Start Chatting</button>
 							</div>
 						</div>
 					</div>
@@ -78,7 +132,7 @@ export function Sidebar() {
 			{loading ||
 				channels.map((channel) => (
 					<SidebarOption
-						key={channel.conversationID}
+						keys={channel.conversationID}
 						title={channel.conversationName}
 						id={channel._id}
 					/>
