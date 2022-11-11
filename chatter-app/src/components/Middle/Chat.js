@@ -58,9 +58,7 @@ export function Chat() {
 ///////////////////////////////////////////
 	PusherClient(Cookies.get('userid'),roomId);
 	
-	useEvent(Cookies.get('userid'), "New Message Recieved: ", ({ data }) =>
-    setRoomMessages((messages) => [...messages, data])
-  );////////////////////////
+////////////////////////
 
 	const chatMessages = noMessages ? (
 		<Message noMessages={noMessages} />
