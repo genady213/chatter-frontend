@@ -31,7 +31,7 @@ export function Topbar() {
       .then(
         (response) => {
           setUsers(response.data); //fill in the array with users
-          console.log(users);
+          //console.log(users);
         },
         (error) => {
           console.log(error);
@@ -56,7 +56,10 @@ export function Topbar() {
 
   //When the user clicks the search button to look for that user
   const onSearch = (searchUser) => {
-    console.log('searching for', searchUser);
+    setCurrInput(searchUser.username);
+    console.log('searching for', searchUser.username);
+    console.log('ID:', searchUser._id);
+    //Make sure to use tolowerCase() on the value that is getting sent out
     //axios call here to bring back data from that user and do whatever, i.e load a chat message with this individual
   };
 
@@ -92,21 +95,39 @@ export function Topbar() {
             className="searchFields"
           />
           <div className="dropdownsearch">
-            {users.slice(0, 7).map((userid, username) => (
-              <div
-                onClick={() => onSearch(userid)}
-                className="dropdown-content"
-                key={userid}
-              >
-                {username}
-              </div>
-            ))}
+            {users
+              .filter((user) => {
+                const searchTerm = currInput.toLowerCase();
+                const searchedName = user.username.toLowerCase();
+
+                return (
+                  searchTerm &&
+                  searchedName.startsWith(searchTerm) &&
+                  searchedName !== searchTerm
+                );
+              })
+              .slice(0, 7)
+              .map((user) => (
+                <div
+                  onClick={() => onSearch(user)}
+                  className="dropdown-content"
+                  key={user._id}
+                >
+                  {user.username}
+                </div>
+              ))}
           </div>
         </div>
 
         <button
           className="searchButton"
-          onClick={() => onSearch(searchQuery.current.value)}
+          onClick={() => {
+            //get the specific user in the search box, from the user state and send it to onSearch
+            const searchValue = users.find((user) => {
+              return user.username === currInput.toLowerCase();
+            });
+            onSearch(searchValue);
+          }}
         >
           <SearchIcon />
         </button>

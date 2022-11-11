@@ -48,7 +48,7 @@
     align-items: center;
     justify-content: center;
     margin-top: -115px;
-    margin-bottom: 50px;
+    margin-bottom: 0px;
 }
 
 .search {
@@ -58,6 +58,7 @@
     border: 1px gray solid;
     border-radius: 6px;
     width:800px;
+    
 }
 
 .search > input{
@@ -83,12 +84,14 @@
 .dropdownsearch {
     background-color: white;
     display: flex;
-    flex-direction: column;
+    flex-direction: column;  
 }
 
 .dropdown-content {
     text-align: start;
     margin: 2px 0;
+    margin-bottom: 0;
+    width:100%
 }
 
 .dropdown-content:hover{
