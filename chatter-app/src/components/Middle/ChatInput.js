@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import { useStateValue } from '../../StateProvider';
-import axios from '../../axios';
-import { imageListClasses } from '@mui/material';
-import Message from './Message';
-//import db from "database";
+import React, { useState } from "react"
+import { useStateValue } from "../../StateProvider";
+import Cookies from "js-cookie";
+import apiClient from "../../apiClient";
+import "./ChatInput.css";
 
 export function ChatInput({ channelName, channelId }) {
   const [input, setInput] = useState('');
@@ -33,20 +32,19 @@ export function ChatInput({ channelName, channelId }) {
   }*/
 
   const sendMessage = (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    if (!input) return false;
+    if(!input) return false
 
-    if (channelId) {
-      /*db.collection("rooms").doc(channelId).collection("messages").add({
-				message: input,
-				timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-				user: user.displayName,
-				userImage: user.photoURL,
-			})
-		*/
-      //sendData(name, username, userImage, input, time);
-    }
+		if (channelId) {
+			const req = apiClient.put('/conversation/' + channelId, 
+			{"userId":Cookies.get('userid'),"message":input}
+	  , { headers: {"Authorization" : `${Cookies.get('token')}`} })
+	  .then((response) => {
+			console.log(response);
+	  }, (error) => {
+		console.log(error);
+	  });}
 
     setInput('');
   };

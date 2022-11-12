@@ -25,25 +25,21 @@ export function LoginPage() {
     if (Cookies.get('token') != null && Cookies.get('token') != '') {
       let path = `/Home`;
       navigate(path);
-    }
-  }, []);
-  async function sendData(user, pass) {
-    var theans = '';
-    const req = await axios
-      .post('/user/login', { username: user, password: pass })
-      .then(
-        (response) => {
-          console.log(response);
-          theans = response.data.message;
-          token = response.data.token;
-          Cookies.set('userid', response.data.id);
-          apiClient.defaults.headers.common['Authorization'] = token;
-          return theans;
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+    }}, []);
+   async function sendData(user, pass) {
+    var theans = "";
+    const req = await axios.post('/user/login', {"username":user,"password":pass})
+    .then((response) => {
+      console.log(response);
+      theans = response.data.message;
+      token = response.data.token;
+      Cookies.set('userid', response.data.id);
+      Cookies.set('username', user);
+      apiClient.defaults.headers.common["Authorization"] = token;
+    return theans;
+    }, (error) => {
+      console.log(error);
+    });
     return theans;
   }
   const routeChange = () => {
@@ -55,33 +51,21 @@ export function LoginPage() {
     navigate(path);
   };
 
-  return (
-    <div className="login-container">
-      <div className="login-top-container">
-        <img className="logo" src="/chatterLogo.png" width="75" height="75" />
-        <h1 className="title">Chatter</h1>
-        <div className="login-form-container">
-          <form className="login-form">
-            <div id="error" className="error-user">
-              Username or Password Incorrect
-            </div>
-            <input
-              ref={myuser}
-              type="text"
-              id="Username"
-              placeholder="Username"
-              className="loginFields"
-            ></input>
-            <br></br>
-            <input
-              ref={mypass}
-              type="password"
-              id="Password"
-              placeholder="Password"
-              className="loginFields"
-            ></input>
-            <br></br>
-            <div className="button">
+    return (
+      <div>
+          <div className="login-top-container">
+              <img className="logo" src="/chatterLogo.png" width="75" height="75" />
+              <h1 className="title">Chatter</h1>
+          <div className="login-form-container">
+            <form className="login-form">
+            <div 
+              id = "error"
+              className="error-user">Username or Password Incorrect</div>
+                <input ref={myuser} type="text" id="Username" placeholder="Username"className="loginFields"></input>
+                <br></br>
+                <input ref={mypass} type="password" id="Password" placeholder="Password" className="loginFields"></input>
+                <br></br>
+                <div className="buttondiv">
               <button
                 className="login-button"
                 type="button"
