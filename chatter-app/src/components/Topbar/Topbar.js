@@ -77,7 +77,7 @@ export function Topbar() {
             alt={user?.displayName}
             src={user?.photoURL}
           />
-          <div className="dropdown-content">
+          <div className="logoutcontent">
             <p type="submit" value="submit" onClick={logOut}>
               Logout
             </p>
