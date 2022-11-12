@@ -5,13 +5,36 @@ import apiClient from "../../apiClient";
 import "./ChatInput.css";
 
 export function ChatInput({ channelName, channelId }) {
-	const [input, setInput] = useState("")
-	const [{ user }] = useStateValue()
+  const [input, setInput] = useState('');
+  const [{ user }] = useStateValue();
 
-	const sendMessage = (e) => {
-		e.preventDefault()
+  /*
+  async function sendData(name, user, userImage, message, time) {
+    var theans = '';
+    const req = await axios
+      .post('/home/uniqueTokenForChat', {
+        username: user,
+        userImage: userImage,
+        userMessage: message,
+        time: time,
+      })
+      .then(
+        (response) => {
+          console.log(response);
+          theans = response.data.message;
+          return theans;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    return theans;
+  }*/
 
-		if (!input) return false
+  const sendMessage = (e) => {
+    e.preventDefault()
+
+    if(!input) return false
 
 		if (channelId) {
 			const req = apiClient.put('/conversation/' + channelId, 
@@ -23,22 +46,22 @@ export function ChatInput({ channelName, channelId }) {
 		console.log(error);
 	  });}
 
-		setInput("")
-	}
+    setInput('');
+  };
 
-	return (
-		<div className="chatInput">
-			<form>
-				<input
-					value={input}
-					onChange={(e) => setInput(e.target.value)}
-					placeholder={`Message #${channelName}`}
-				/>
-				<button type="submit" onClick={sendMessage}>
-					SEND
-				</button>
-			</form>
-		</div>
-	)
+  return (
+    <div className="chatInput">
+      <form>
+        <input
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder={`Message #${channelName}`}
+        />
+        <button type="submit" onClick={sendMessage}>
+          SEND
+        </button>
+      </form>
+    </div>
+  );
 }
-export default ChatInput
+export default ChatInput;

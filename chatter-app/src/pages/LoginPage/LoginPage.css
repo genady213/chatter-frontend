@@ -1,18 +1,17 @@
 .login-top-container {
     display: flex;
     width: 100%;
-    height: 30vh;
-    background-color: var(--onlyfriends-color);
+    height: 15rem;
+    background-color: var(--chatter-black);
     color: white;
 }
 
-.login-middle-container {
-    background-color: var(--onlyfriends-grey);
-    height: 40vh;
-}
-.login-bottom-container {
-    background-color: var(--onlyfriends-light-grey);
-    height:30vh;
+.login-container {
+    background-color: var(--chatter-brown);
+    height:100%;
+    width:100%;
+    z-index: -100;
+    position:fixed;
 }
 
 .logo{
@@ -23,12 +22,14 @@
 
 }
 
+@import url(https://fonts.googleapis.com/css?family=Pacifico);
+
 .title{
     margin-top: 75px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: 'Pacifico', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 55px;
+    font-weight: 10;
 }
-
 
 
 .login-form-container{
@@ -38,7 +39,7 @@
     width: 30%;
     height: auto;
     margin-left: auto;
-    margin-right: 20px;
+    margin-right: 30px;
 }
 
 .loginFields {
@@ -53,7 +54,7 @@
 }
 
 .login-button {
-    background-color: var(--onlyfriends-light-grey);
+    background-color: var(--chatter-button-gray);
     border-radius: 8px;
     border-style: none;
     box-sizing: border-box;

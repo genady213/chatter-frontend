@@ -1,6 +1,6 @@
 import React from 'react';
 import './LoginPage.css';
-import {useRef, useEffect} from 'react';
+import { useRef, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import { Footer } from '../../components/Footer/Footer';
 import {
@@ -15,14 +15,14 @@ import CommentIcon from '@mui/icons-material/Comment';
 import axios from '../../axios';
 import apiClient from '../../apiClient';
 
-export var token = "";
+export var token = '';
 
 export function LoginPage() {
   const myuser = useRef('');
   const mypass = useRef('');
   let navigate = useNavigate();
   useEffect(() => {
-    if(Cookies.get('token') != null && Cookies.get('token') != ''){
+    if (Cookies.get('token') != null && Cookies.get('token') != '') {
       let path = `/Home`;
       navigate(path);
     }}, []);
@@ -70,36 +70,36 @@ export function LoginPage() {
                 className="login-button"
                 type="button"
                 value="Submit"
-                onClick={async() => {
-                  const theToken = await sendData(myuser.current.value,mypass.current.value);             
-                  if(theToken == "Success"){           
+                onClick={async () => {
+                  const theToken = await sendData(
+                    myuser.current.value,
+                    mypass.current.value
+                  );
+                  if (theToken == 'Success') {
                     Cookies.set('token', token);
-                   routeChange();
-                  }else{
-                    document.getElementById("error").style.visibility = 'visible';
-                  }              
+                    routeChange();
+                  } else {
+                    document.getElementById('error').style.visibility =
+                      'visible';
+                  }
                 }}
               >
                 Login
               </button>
-              </div>
-              
-              <a href="#"
+            </div>
+
+            <a
+              href="#"
               onClick={routeChangeRegister}
               className="createAccountButton"
-              >Create Account
-              </a>
-            </form>
-          </div>
-
-          {/*<Footer />*/}
-            </div>
-            <div className="login-middle-container">
-
-            </div>
-            <div className="login-bottom-container">
-
-            </div>
+            >
+              Create Account
+            </a>
+          </form>
+        </div>
       </div>
+      <div className="login-middle-container"></div>
+      <Footer />
+    </div>
   );
 }
