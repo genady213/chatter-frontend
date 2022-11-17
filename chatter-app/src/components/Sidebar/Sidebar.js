@@ -107,7 +107,7 @@ export function Sidebar() {
 						<button className="close" onClick={close}>
 							&times;
 						</button>
-						<div className="header"> Chatter someone up! </div>
+						<div className="popupheader"> Chatter someone up! </div>
 						<div className="textFieldArea">
 							<TextField className="textFields" label="Conversation Name" inputRef={convoName} />
 							<TextField className="textFields" label="Who are you chatting with?" inputRef={userToChat} />
