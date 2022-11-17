@@ -85,11 +85,11 @@ function createConversationBind(channelID) {
 	const chatMessages = noMessages ? (
 		<Message noMessages={noMessages} />
 	) : (
-		roomMessages.map(({ message, _id, timeSent}) => (
+		roomMessages.map(({ message, _id, timeSent, username}) => (
 			<Message
 				message={message}
 				timestamp={timeSent}
-				user={_id}
+				user={username}
 				key={timeSent}
 			/>
 		))
