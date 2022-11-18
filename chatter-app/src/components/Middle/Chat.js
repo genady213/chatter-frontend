@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useEvent, useRef } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import "./Chat.css"
 import Message from "./Message"
 import ChatInput from "./ChatInput"
 import apiClient from "../../apiClient"
 import StarBorderOutlineIcon from "@material-ui/icons/StarBorderOutlined"
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined"
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import Cookies from "js-cookie"
 import axios from "axios"
 import Pusher from 'pusher-js';
@@ -27,6 +28,17 @@ export function Chat() {
 	  }, (error) => {
 		console.log(error);
 	  });};
+	  let navigate = useNavigate();
+	  function deleteChannel() {
+		apiClient.delete('/conversation/' + roomId
+		  , { headers: {"Authorization" : `${Cookies.get('token')}`} })
+		  .then((response) => {
+				console.log(response.data);
+				let path = `/Home/`;
+        		navigate(path);
+		  }, (error) => {
+			console.log(error);
+		  });};
 	
 ///////////////////////PUSHER
 
@@ -102,6 +114,8 @@ function createConversationBind(channelID) {
 					<h4 className="chat_channelName">
 						<span># {roomDetails?.name}</span>
 						<StarBorderOutlineIcon />
+						<DeleteOutlineIcon className="DeleteChannel"
+						onClick={deleteChannel}/>
 					</h4>
 				</div>
 				<div className="chat_headerRight">
