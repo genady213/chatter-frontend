@@ -25,7 +25,7 @@ export function RegisterPage() {
   async function sendData(name, user, pass) {
     var theans = '';
     const req = await axios
-      .post('/user/signup', { name: name, username: user, password: pass })
+      .post('/user/signup', { "name": name, "username": user, "password": pass })
       .then(
         (response) => {
           console.log(response);
@@ -61,6 +61,20 @@ export function RegisterPage() {
       <div className="register-form-container">
         <form className="register-form">
           <br></br>
+          <input
+            ref={myname}
+            type="text"
+            id="Name"
+            placeholder="Name"
+            className="register-loginFields"
+          ></input>
+          <input
+            //ref={myemail} register does not take in email
+            type="text"
+            id="Email"
+            placeholder="Email"
+            className="register-loginFields"
+          ></input>
           <input
             ref={myuser}
             type="text"
