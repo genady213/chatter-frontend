@@ -35,3 +35,6 @@
 	margin-right: 5px;
 	font-size: 16px;
 }
+.DeleteChannel:hover {
+	cursor: pointer;
+}
