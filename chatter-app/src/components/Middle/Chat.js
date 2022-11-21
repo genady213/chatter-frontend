@@ -18,61 +18,65 @@ export function Chat() {
 	const [noMessages, setNoMessages] = useState(false)
 
 	function pusherUpdate() {
-	apiClient.get('/conversation/' + roomId
-	  , { headers: {"Authorization" : `${Cookies.get('token')}`} })
-	  .then((response) => {
-			console.log(response.data.messages);
-			if (!roomMessages.length){setNoMessages(false)}
-			setRoomMessages(response.data.messages);
-	  }, (error) => {
-		console.log(error);
-	  });};
-	
-///////////////////////PUSHER
+		apiClient.get('/conversation/' + roomId
+			, { headers: { "Authorization": `${Cookies.get('token')}` } })
+			.then((response) => {
+				console.log(response.data.messages);
+				if (!roomMessages.length) { setNoMessages(false) }
+				setRoomMessages(response.data.messages);
+				//roomMessages.scrollTop = roomMessages.scrollHeight;
+			}, (error) => {
+				console.log(error);
+			});
+		var objDiv = document.getElementById("chat");
+		objDiv.scrollTop = objDiv.scrollHeight;
+	};
+
+	///////////////////////PUSHER
 
 	pusher.connection.bind("connected", () => {
 		console.log("Websocket Connected");
 	});
 	const channel = pusher.subscribe(Cookies.get('userid'));
-createConversationBind(roomId);
+	createConversationBind(roomId);
 
-channel.bind("user-event", function (data) {
-    switch (data.eventType) {
-        case "create-conversation":
-            createConversationBind(data.conversationId);
-            break;
-    }
-    console.log(data);
-});
+	channel.bind("user-event", function (data) {
+		switch (data.eventType) {
+			case "create-conversation":
+				createConversationBind(data.conversationId);
+				break;
+		}
+		console.log(data);
+	});
 
-function createConversationBind(channelID) {
-    const conversationChannel = pusher.subscribe(channelID);
-    conversationChannel.bind("message", function (data) {
-        console.log("New Message Recieved: " + JSON.stringify(data));
-		pusherUpdate();
-    }, conversationChannel.unbind());
-    conversationChannel.bind("status", function (data) {
-        console.log("New Status Received: " + JSON.stringify(data));
-    });
-};
-////////////////////////	
+	function createConversationBind(channelID) {
+		const conversationChannel = pusher.subscribe(channelID);
+		conversationChannel.bind("message", function (data) {
+			console.log("New Message Recieved: " + JSON.stringify(data));
+			pusherUpdate();
+		}, conversationChannel.unbind());
+		conversationChannel.bind("status", function (data) {
+			console.log("New Status Received: " + JSON.stringify(data));
+		});
+	};
+	////////////////////////	
 
 	useEffect(() => {
-	
+
 		if (roomId) {
 			const req = apiClient.get('/conversation/' + roomId
-	  , { headers: {"Authorization" : `${Cookies.get('token')}`} })
-	  .then((response) => {
-			console.log(response.data.messages);
-			setRoomMessages(response.data.messages);
-			setRoomDetails(response.data);
-	  }, (error) => {
-		console.log(error);
-	  }); 
+				, { headers: { "Authorization": `${Cookies.get('token')}` } })
+				.then((response) => {
+					console.log(response.data.messages);
+					setRoomMessages(response.data.messages);
+					setRoomDetails(response.data);
+				}, (error) => {
+					console.log(error);
+				});
 
 		}
 
-		
+
 	}, [roomId])
 
 	useEffect(() => {
@@ -85,7 +89,7 @@ function createConversationBind(channelID) {
 	const chatMessages = noMessages ? (
 		<Message noMessages={noMessages} />
 	) : (
-		roomMessages.map(({ message, _id, timeSent}) => (
+		roomMessages.map(({ message, _id, timeSent }) => (
 			<Message
 				message={message}
 				timestamp={timeSent}
@@ -96,7 +100,9 @@ function createConversationBind(channelID) {
 	)
 
 	return (
+		/*<div className="scroll">*/
 		<div className="chat">
+			<div className="chat_inputBackground">hi</div>
 			<div className="chat_header">
 				<div className="chat_headerLeft">
 					<h4 className="chat_channelName">
@@ -111,8 +117,10 @@ function createConversationBind(channelID) {
 				</div>
 			</div>
 			<div className="chat_messages">{chatMessages}</div>
+			
 			<ChatInput channelName={roomDetails?.name} channelId={roomId} />
 		</div>
+		/*</div>*/
 	)
 }
 export default Chat

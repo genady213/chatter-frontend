@@ -1,16 +1,18 @@
 .sidebarOption {
     display: flex;
-	align-items: center;
-	font-size: 12px;
-	padding: 7px 10px;
-	cursor: pointer;
-	transition: background-color 0.2s ease;
+    align-items: center;
+    font-size: 12px;
+    padding: 7px 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    border-top: 1px solid black;
+    background-color: var(--chatter-brown)
 }
 
-.sidebarOption:hover{
-    opacity: 0.9;
-    background-color: #52acc7;
-}
+    .sidebarOption:hover {
+        opacity: 0.9;
+        background-color: #52acc7;
+    }
 
 .sidebarOption_icon {
     padding: 10px;
@@ -27,7 +29,7 @@
 
 .sidebarOption > h3 {
     display: flex;
-	align-items: center;
-	font-size: 15px;
+    align-items: center;
+    font-size: 15px;
     font-weight: 500;
 }

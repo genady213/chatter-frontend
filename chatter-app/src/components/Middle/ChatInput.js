@@ -50,7 +50,8 @@ export function ChatInput({ channelName, channelId }) {
   };
 
   return (
-    <div className="chatInput">
+      <div className="chatInput">
+          {/*<div className="chat_inputBackground">hi</div>*/}
       <form>
         <input
           value={input}

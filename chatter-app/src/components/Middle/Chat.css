@@ -1,9 +1,19 @@
+/*.scroll {
+	overflow: scroll;
+}*/
+
 .chat {
-	background-color: white;
+	background-color: var( --chatter-light-grey );
 	flex: 0.7;
 	flex-grow: 1;
-	overflow-y: auto;
+	overflow-y: scroll;
 	padding-bottom: 350px;
+	/*margin-top: 0;
+	margin-bottom: 0;*/
+	//display: flex;
+	//flex-direction: column-reverse;
+	/*height: calc(100% - 56px);
+	overflow-y: auto;*/
 }
 
 .chat_header {
@@ -20,10 +30,10 @@
 	text-transform: lowercase;
 }
 
-.chat_channelName > .MuiSvgIcon-root {
-	margin-left: 5px;
-	font-size: 18px;
-}
+	.chat_channelName > .MuiSvgIcon-root {
+		margin-left: 5px;
+		font-size: 18px;
+	}
 
 .chat_headerRight > p {
 	display: flex;
@@ -31,7 +41,7 @@
 	font-size: 14px;
 }
 
-.chat_headerRight > p > .MuiSvgIcon-root {
-	margin-right: 5px;
-	font-size: 16px;
-}
+	.chat_headerRight > p > .MuiSvgIcon-root {
+		margin-right: 5px;
+		font-size: 16px;
+	}

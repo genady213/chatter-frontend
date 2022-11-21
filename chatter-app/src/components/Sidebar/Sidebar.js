@@ -13,7 +13,7 @@ import {
 	BrowserRouter as Router,
 	useNavigate,
 	useParams
-  } from 'react-router-dom';
+} from 'react-router-dom';
 import { pusher } from "../../client";
 
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
@@ -28,11 +28,11 @@ export function Sidebar() {
 	const userToChat = useRef();
 	let navigate = useNavigate();
 	const routeChange = () => {
-        let path = `/Home/conversation/` + redirect;
-        navigate(path);
-        //window.location.reload(true);
-      };
-	
+		let path = `/Home/conversation/` + redirect;
+		navigate(path);
+		//window.location.reload(true);
+	};
+
 	const [{ user }] = useStateValue()
 	const [channels, setChannels] = useState([])
 	const [loading, setLoading] = useState("")
@@ -58,32 +58,32 @@ export function Sidebar() {
 		var firstuserid = "";
 		var firstuser = "";
 		const request = await apiClient
-      .get('/user/search/' + user, {
-        headers: { Authorization: `${Cookies.get('token')}` },
-      })
-      .then(
-        (response) => {
-			console.log(response);
-			firstuser = response.data[0].username;
-			firstuserid = response.data[0]._id;
-        },
-        (error) => {
-          console.log(error);
-        }
-      )
-		const req = await apiClient.post('/conversation', {"name":convo,"users":[{"userId":Cookies.get('userid'),"username":Cookies.get('username')},{"userId":firstuserid,"username":firstuser}]}
-		,{ headers: {"Authorization" : `${Cookies.get('token')}`} })
-		.then((response) => {
-		  console.log(response);
-		  theans = response.data.message;
-		  redirect = response.data.conversationId;
-			fetchData()
+			.get('/user/search/' + user, {
+				headers: { Authorization: `${Cookies.get('token')}` },
+			})
+			.then(
+				(response) => {
+					console.log(response);
+					firstuser = response.data[0].username;
+					firstuserid = response.data[0]._id;
+				},
+				(error) => {
+					console.log(error);
+				}
+			)
+		const req = await apiClient.post('/conversation', { "name": convo, "users": [{ "userId": Cookies.get('userid'), "username": Cookies.get('username') }, { "userId": firstuserid, "username": firstuser }] }
+			, { headers: { "Authorization": `${Cookies.get('token')}` } })
+			.then((response) => {
+				console.log(response);
+				theans = response.data.message;
+				redirect = response.data.conversationId;
+				fetchData()
+				return theans;
+			}, (error) => {
+				console.log(error);
+			});
 		return theans;
-		}, (error) => {
-		  console.log(error);
-		});
-		return theans;
-	  }
+	}
 
 	useEffect(() => {
 		if (!channels.length)
@@ -111,17 +111,17 @@ export function Sidebar() {
 						<div className="textFieldArea">
 							<TextField className="textFields" label="Conversation Name" inputRef={convoName} />
 							<TextField className="textFields" label="Who are you chatting with?" inputRef={userToChat} />
-							<div id = "error" className="error-user">Conversation Create Failed</div>
+							<div id="error" className="error-user">Conversation Create Failed</div>
 							<div className="popupButtonArea">
 								<button className="popupButton"
-								onClick={async() => {
-									const redirectSuccess = await sendData(convoName.current.value,userToChat.current.value);
-									if(redirectSuccess == "Conversation Created"){      
-									   routeChange();
-									   close();
-									  }else{
-										document.getElementById("error").style.visibility = 'visible';
-									  }              
+									onClick={async () => {
+										const redirectSuccess = await sendData(convoName.current.value, userToChat.current.value);
+										if (redirectSuccess == "Conversation Created") {
+											routeChange();
+											close();
+										} else {
+											document.getElementById("error").style.visibility = 'visible';
+										}
 									}}
 								>Start Chatting</button>
 							</div>
@@ -130,7 +130,7 @@ export function Sidebar() {
 				)}
 			</Popup>
 
-			<hr />
+			{/*<hr />*/}
 
 
 			{loading ||

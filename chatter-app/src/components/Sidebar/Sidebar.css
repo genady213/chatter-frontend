@@ -2,8 +2,8 @@
     flex: 0.3;
     padding-bottom: 240px;
     color: white;
-    background-color: var(--onlyfriends-color);
-    border-top: 1px solid #52acc7;
+    background-color: var(--chatter-brown);
+    //border-top: 1px solid #52acc7;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -28,7 +28,7 @@
 
 
 .button {
-    background-color: var(--onlyfriends-color);
+    background-color: var(--onlyfriends-grey);
     border: none;
     color: white;
     padding: 18px;
@@ -37,10 +37,11 @@
     width: 100%;
     cursor: pointer;
 }
-.button:hover{
-    opacity: 0.9;
-    background-color: #52acc7;
-}
+
+    .button:hover {
+        opacity: 0.9;
+        background-color: #52acc7;
+    }
 
 .modal {
     font-size: 12px;
@@ -106,7 +107,7 @@
     border: 1px solid #cfcece;
 }
 
-.error-user{
+.error-user {
     visibility: hidden;
     color: red;
     font-size: small;
