@@ -73,14 +73,14 @@ function createConversationBind(channelID) {
 	
 		if (roomId) {
 			const req = apiClient.get('/conversation/' + roomId
-			, { headers: { "Authorization": `${Cookies.get('token')}` } })
-			.then((response) => {
-				console.log(response.data.messages);
-				setRoomMessages(response.data.messages);
-				setRoomDetails(response.data);
-			}, (error) => {
-				console.log(error);
-			});
+	, { headers: { "Authorization": `${Cookies.get('token')}` } })
+	.then((response) => {
+		console.log(response.data.messages);
+		setRoomMessages(response.data.messages);
+		setRoomDetails(response.data);
+	}, (error) => {
+		console.log(error);
+	});
 
 		}
 
