@@ -80,8 +80,8 @@ function createConversationBind(channelID) {
 			setRoomDetails(response.data);
 	  }, (error) => {
 		console.log(error);
-	});
-	
+	  }); 
+
 		}
 
 		
