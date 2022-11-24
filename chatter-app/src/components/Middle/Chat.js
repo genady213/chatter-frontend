@@ -70,6 +70,7 @@ function createConversationBind(channelID) {
 ////////////////////////	
 
 	useEffect(() => {
+	
 		if (roomId) {
 			const req = apiClient.get('/conversation/' + roomId
 				, { headers: { "Authorization": `${Cookies.get('token')}` } })
