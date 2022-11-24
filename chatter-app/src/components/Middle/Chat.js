@@ -42,47 +42,47 @@ export function Chat() {
 	
 ///////////////////////PUSHER
 
-	pusher.connection.bind("connected", () => {
-		console.log("Websocket Connected");
+pusher.connection.bind("connected", () => {
+	console.log("Websocket Connected");
+});
+const channel = pusher.subscribe(Cookies.get('userid'));
+createConversationBind(roomId);
+
+channel.bind("user-event", function (data) {
+	switch (data.eventType) {
+		case "create-conversation":
+			createConversationBind(data.conversationId);
+			break;
+	}
+	console.log(data);
+});
+
+function createConversationBind(channelID) {
+	const conversationChannel = pusher.subscribe(channelID);
+	conversationChannel.bind("message", function (data) {
+		console.log("New Message Recieved: " + JSON.stringify(data));
+		pusherUpdate();
+	}, conversationChannel.unbind());
+	conversationChannel.bind("status", function (data) {
+		console.log("New Status Received: " + JSON.stringify(data));
 	});
-	const channel = pusher.subscribe(Cookies.get('userid'));
-	createConversationBind(roomId);
+};
+////////////////////////	
 
-	channel.bind("user-event", function (data) {
-		switch (data.eventType) {
-			case "create-conversation":
-				createConversationBind(data.conversationId);
-				break;
-		}
-		console.log(data);
-	});
+useEffect(() => {
 
-	function createConversationBind(channelID) {
-		const conversationChannel = pusher.subscribe(channelID);
-		conversationChannel.bind("message", function (data) {
-			console.log("New Message Recieved: " + JSON.stringify(data));
-			pusherUpdate();
-		}, conversationChannel.unbind());
-		conversationChannel.bind("status", function (data) {
-			console.log("New Status Received: " + JSON.stringify(data));
-		});
-	};
-	////////////////////////	
+	if (roomId) {
+		const req = apiClient.get('/conversation/' + roomId
+			, { headers: { "Authorization": `${Cookies.get('token')}` } })
+			.then((response) => {
+				console.log(response.data.messages);
+				setRoomMessages(response.data.messages);
+				setRoomDetails(response.data);
+			}, (error) => {
+				console.log(error);
+			});
 
-	useEffect(() => {
-
-		if (roomId) {
-			const req = apiClient.get('/conversation/' + roomId
-				, { headers: { "Authorization": `${Cookies.get('token')}` } })
-				.then((response) => {
-					console.log(response.data.messages);
-					setRoomMessages(response.data.messages);
-					setRoomDetails(response.data);
-				}, (error) => {
-					console.log(error);
-				});
-
-		}
+	}
 
 
 	}, [roomId])
