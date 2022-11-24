@@ -18,7 +18,7 @@ function App() {
           <Route path="/CompanyPolicy/*" element={<CompanyPolicy />} />
           <Route path="/TermsAndConditions/*" element={<TermsAndConditions />} />
       <Route path="/Register/*" element={<RegisterPage />} />
-          <Route path="/Home/*" element={<HomePage />} />
+      <Route path="/Home/*" element={<HomePage />} />
           <Route path="/Settings/*" element={<SettingsPage />} />
     </Routes>
   );
