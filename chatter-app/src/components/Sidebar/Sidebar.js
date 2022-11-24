@@ -32,6 +32,7 @@ export function Sidebar() {
         navigate(path);
         //window.location.reload(true);
       };
+      
 	const [{ user }] = useStateValue()
 	const [channels, setChannels] = useState([])
 	const [loading, setLoading] = useState("")
