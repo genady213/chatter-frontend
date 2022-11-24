@@ -49,12 +49,12 @@ export function Chat() {
 createConversationBind(roomId);
 
 channel.bind("user-event", function (data) {
-switch (data.eventType) {
-	case "create-conversation":
-		createConversationBind(data.conversationId);
-		break;
-}
-console.log(data);
+	switch (data.eventType) {
+		case "create-conversation":
+			createConversationBind(data.conversationId);
+			break;
+	}
+	console.log(data);
 });
 
 function createConversationBind(channelID) {
