@@ -50,7 +50,7 @@ export function ChatInput({ channelName, channelId }) {
   };
 
   return (
-      <div className="chatInput">
+    <div className="chatInput">
           <img className="sendIcon" src="/chatterLogoBlack.png" width="100" height="100" />
           {/*<div className="chat_inputBackground">hi</div>*/}
       <form>
