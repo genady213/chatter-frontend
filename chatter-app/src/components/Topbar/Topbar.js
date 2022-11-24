@@ -70,10 +70,10 @@ export function Topbar() {
 
   return (
     <div>
-       <div className="topbar">
-         <div className="left" onClick={goToSettings}>
-           <SettingsIcon />
-         </div> 
+      <div className="topbar">
+        <div className="left" onClick={goToSettings}>
+          <SettingsIcon />
+        </div>
         <img className="logo" src="/chatterLogo.png" width="75" height="75" />
 
         <div className="right">
