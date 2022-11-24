@@ -58,7 +58,7 @@ export function Sidebar() {
 		var firstuserid = "";
 		var firstuser = "";
 		const request = await apiClient
-			.get('/user/search/' + user, {
+      .get('/user/search/' + user, {
         headers: { Authorization: `${Cookies.get('token')}` },
       })
       .then(
