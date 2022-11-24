@@ -13,7 +13,7 @@ import {
 	BrowserRouter as Router,
 	useNavigate,
 	useParams
- } from 'react-router-dom';
+  } from 'react-router-dom';
 import { pusher } from "../../client";
 
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
