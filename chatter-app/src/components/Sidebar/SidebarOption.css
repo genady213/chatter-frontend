@@ -9,10 +9,10 @@
     background-color: var(--chatter-brown)
 }
 
-    .sidebarOption:hover {
-        opacity: 0.9;
-        background-color: #52acc7;
-    }
+.sidebarOption:hover {
+    opacity: 0.9;
+    background-color: #52acc7;
+}
 
 .sidebarOption_icon {
     padding: 10px;
