@@ -73,7 +73,7 @@ function createConversationBind(channelID) {
 	
 		if (roomId) {
 			const req = apiClient.get('/conversation/' + roomId
-  , { headers: {"Authorization" : `${Cookies.get('token')}`} })
+	  , { headers: {"Authorization" : `${Cookies.get('token')}`} })
 	  .then((response) => {
 			console.log(response.data.messages);
 			setRoomMessages(response.data.messages);
@@ -81,6 +81,7 @@ function createConversationBind(channelID) {
 	  }, (error) => {
 		console.log(error);
 	});
+	
 		}
 
 		
