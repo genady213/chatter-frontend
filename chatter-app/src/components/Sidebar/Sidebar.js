@@ -114,7 +114,7 @@ export function Sidebar() {
 							<div id = "error" className="error-user">Conversation Create Failed</div>
 							<div className="popupButtonArea">
 								<button className="popupButton"
-									onClick={async() => {
+								onClick={async() => {
 									const redirectSuccess = await sendData(convoName.current.value,userToChat.current.value);
 									if(redirectSuccess == "Conversation Created"){      
 									   routeChange();
