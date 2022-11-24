@@ -58,29 +58,29 @@ export function Sidebar() {
 		var firstuser = "";
 		const request = await apiClient
 			.get('/user/search/' + user, {
-				headers: { Authorization: `${Cookies.get('token')}` },
-			})
-			.then(
-				(response) => {
-					console.log(response);
-					firstuser = response.data[0].username;
-					firstuserid = response.data[0]._id;
-				},
-				(error) => {
-					console.log(error);
-				}
-			)
-		const req = await apiClient.post('/conversation', { "name": convo, "users": [{ "userId": Cookies.get('userid'), "username": Cookies.get('username') }, { "userId": firstuserid, "username": firstuser }] }
-			, { headers: { "Authorization": `${Cookies.get('token')}` } })
-			.then((response) => {
-				console.log(response);
-				theans = response.data.message;
-				redirect = response.data.conversationId;
-				fetchData()
-				return theans;
-			}, (error) => {
-				console.log(error);
-			});
+        headers: { Authorization: `${Cookies.get('token')}` },
+      })
+      .then(
+        (response) => {
+			console.log(response);
+			firstuser = response.data[0].username;
+			firstuserid = response.data[0]._id;
+        },
+        (error) => {
+          console.log(error);
+        }
+      )
+		const req = await apiClient.post('/conversation', {"name":convo,"users":[{"userId":Cookies.get('userid'),"username":Cookies.get('username')},{"userId":firstuserid,"username":firstuser}]}
+		,{ headers: {"Authorization" : `${Cookies.get('token')}`} })
+		.then((response) => {
+		  console.log(response);
+		  theans = response.data.message;
+		  redirect = response.data.conversationId;
+			fetchData()
+		return theans;
+		}, (error) => {
+		  console.log(error);
+		});
 		return theans;
 	}
 
