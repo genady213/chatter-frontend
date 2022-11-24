@@ -42,10 +42,10 @@ export function Chat() {
 	
 ///////////////////////PUSHER
 
-pusher.connection.bind("connected", () => {
-	console.log("Websocket Connected");
-});
-const channel = pusher.subscribe(Cookies.get('userid'));
+	pusher.connection.bind("connected", () => {
+		console.log("Websocket Connected");
+	});
+	const channel = pusher.subscribe(Cookies.get('userid'));
 createConversationBind(roomId);
 
 channel.bind("user-event", function (data) {
