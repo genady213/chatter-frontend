@@ -29,7 +29,6 @@
 .chatInput > form > button:hover {
 	background-color: #52acc7;
 }
-
 .sendIcon {
 	position: fixed;
 	display: flex;
