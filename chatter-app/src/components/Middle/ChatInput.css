@@ -1,15 +1,13 @@
 .chatInput {
 	border-radius: 20px;
-	/*background-color: var(--chatter-grey);*/
 }
 
-	.chatInput > form {
-		color: black;
-		position: relative;
-		display: flex;
-		justify-content: center;
-		/*background-color: var(--chatter-grey);*/
-	}
+.chatInput > form {
+	color: black;
+	position: relative;
+	display: flex;
+	justify-content: center;
+}
 
 .chatInput > form > input {
 	position: fixed;
