@@ -9,7 +9,7 @@
     background-color: var(--chatter-brown)
 }
 
-.sidebarOption:hover {
+.sidebarOption:hover{
     opacity: 0.9;
     background-color: #52acc7;
 }
