@@ -108,9 +108,7 @@ function createConversationBind(channelID) {
 	)
 
 	return (
-		/*<div className="scroll">*/
 		<div className="chat">
-			{/*<div className="chat_inputBackground">hi</div>*/}
 			<div className="chat_header">
 				<div className="chat_headerLeft">
 					<h4 className="chat_channelName">
@@ -130,7 +128,6 @@ function createConversationBind(channelID) {
 			<div className="chat_inputBackground">hi</div>
 			<ChatInput channelName={roomDetails?.name} channelId={roomId} />
 		</div>
-		/*</div>*/
 	)
 }
 export default Chat
