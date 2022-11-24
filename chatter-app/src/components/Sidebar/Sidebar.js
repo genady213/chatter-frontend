@@ -28,10 +28,10 @@ export function Sidebar() {
 	const userToChat = useRef();
 	let navigate = useNavigate();
 	const routeChange = () => {
-		let path = `/Home/conversation/` + redirect;
-		navigate(path);
-		//window.location.reload(true);
-	};
+	let path = `/Home/conversation/` + redirect;
+	navigate(path);
+	//window.location.reload(true);
+};
 
 	const [{ user }] = useStateValue()
 	const [channels, setChannels] = useState([])
