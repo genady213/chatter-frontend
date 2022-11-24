@@ -111,7 +111,7 @@ export function Sidebar() {
 						<div className="textFieldArea">
 							<TextField className="textFields" label="Conversation Name" inputRef={convoName} />
 							<TextField className="textFields" label="Who are you chatting with?" inputRef={userToChat} />
-							<div id="error" className="error-user">Conversation Create Failed</div>
+							<div id = "error" className="error-user">Conversation Create Failed</div>
 							<div className="popupButtonArea">
 								<button className="popupButton"
 									onClick={async() => {
