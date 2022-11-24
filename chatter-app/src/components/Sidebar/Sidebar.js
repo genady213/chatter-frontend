@@ -29,10 +29,9 @@ export function Sidebar() {
 	let navigate = useNavigate();
 	const routeChange = () => {
 	let path = `/Home/conversation/` + redirect;
-	navigate(path);
-	//window.location.reload(true);
-};
-
+        navigate(path);
+        //window.location.reload(true);
+      };
 	const [{ user }] = useStateValue()
 	const [channels, setChannels] = useState([])
 	const [loading, setLoading] = useState("")
