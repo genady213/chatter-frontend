@@ -39,10 +39,10 @@
     cursor: pointer;
 }
 
-    .button:hover {
-        opacity: 0.9;
-        background-color: #52acc7;
-    }
+.button:hover{
+    opacity: 0.9;
+    background-color: #52acc7;
+}
 
 .modal {
     font-size: 12px;
