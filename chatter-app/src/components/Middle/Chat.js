@@ -62,10 +62,10 @@ function createConversationBind(channelID) {
     conversationChannel.bind("message", function (data) {
         console.log("New Message Recieved: " + JSON.stringify(data));
 		pusherUpdate();
-	}, conversationChannel.unbind());
-	conversationChannel.bind("status", function (data) {
-		console.log("New Status Received: " + JSON.stringify(data));
-	});
+    }, conversationChannel.unbind());
+    conversationChannel.bind("status", function (data) {
+        console.log("New Status Received: " + JSON.stringify(data));
+    });
 };
 ////////////////////////	
 
