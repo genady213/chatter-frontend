@@ -114,14 +114,14 @@ export function Sidebar() {
 							<div id="error" className="error-user">Conversation Create Failed</div>
 							<div className="popupButtonArea">
 								<button className="popupButton"
-									onClick={async () => {
-										const redirectSuccess = await sendData(convoName.current.value, userToChat.current.value);
-										if (redirectSuccess == "Conversation Created") {
-											routeChange();
-											close();
-										} else {
-											document.getElementById("error").style.visibility = 'visible';
-										}
+									onClick={async() => {
+									const redirectSuccess = await sendData(convoName.current.value,userToChat.current.value);
+									if(redirectSuccess == "Conversation Created"){      
+									   routeChange();
+									   close();
+									  }else{
+										document.getElementById("error").style.visibility = 'visible';
+									  }              
 									}}
 								>Start Chatting</button>
 							</div>
