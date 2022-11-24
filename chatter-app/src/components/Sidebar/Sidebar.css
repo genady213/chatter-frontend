@@ -38,7 +38,6 @@
     width: 100%;
     cursor: pointer;
 }
-
 .button:hover{
     opacity: 0.9;
     background-color: #52acc7;
@@ -108,7 +107,7 @@
     border: 1px solid #cfcece;
 }
 
-.error-user {
+.error-user{
     visibility: hidden;
     color: red;
     font-size: small;
