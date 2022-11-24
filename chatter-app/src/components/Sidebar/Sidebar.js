@@ -28,7 +28,7 @@ export function Sidebar() {
 	const userToChat = useRef();
 	let navigate = useNavigate();
 	const routeChange = () => {
-	let path = `/Home/conversation/` + redirect;
+        let path = `/Home/conversation/` + redirect;
         navigate(path);
         //window.location.reload(true);
       };
