@@ -83,7 +83,7 @@ export function Sidebar() {
 		  console.log(error);
 		});
 		return theans;
-	}
+	  }
 
 	useEffect(() => {
 		if (!channels.length)
