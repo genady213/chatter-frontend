@@ -69,20 +69,20 @@ function createConversationBind(channelID) {
 };
 ////////////////////////	
 
-useEffect(() => {
+	useEffect(() => {
 
-	if (roomId) {
-		const req = apiClient.get('/conversation/' + roomId
-			, { headers: { "Authorization": `${Cookies.get('token')}` } })
-			.then((response) => {
-				console.log(response.data.messages);
-				setRoomMessages(response.data.messages);
-				setRoomDetails(response.data);
-			}, (error) => {
-				console.log(error);
-			});
+		if (roomId) {
+			const req = apiClient.get('/conversation/' + roomId
+				, { headers: { "Authorization": `${Cookies.get('token')}` } })
+				.then((response) => {
+					console.log(response.data.messages);
+					setRoomMessages(response.data.messages);
+					setRoomDetails(response.data);
+				}, (error) => {
+					console.log(error);
+				});
 
-	}
+		}
 
 
 	}, [roomId])
