@@ -47,7 +47,7 @@ export function Topbar() {
     Cookies.set('userid', '');
     let path = `/`;
     navigate(path);
-    };
+  };
 
     const goToSettings = () => {
         let path = `/SettingsPage/SettingsPage`;
