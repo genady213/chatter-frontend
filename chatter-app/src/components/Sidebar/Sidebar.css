@@ -6,6 +6,7 @@
     //border-top: 1px solid #52acc7;
     overflow-y: auto;
     overflow-x: hidden;
+    z-index: 5;
 }
 
     .sidebar hr {
@@ -49,12 +50,12 @@
     background-color: white;
 }
 
-    .modal > .header {
+    .modal > .popupheader {
         width: 100%;
         border-bottom: 1px solid black;
         font-size: 18px;
         text-align: center;
-        background-color: var(--onlyfriends-color);
+        background-color: var(--chatter-brown);
         color: white;
     }
 
@@ -84,7 +85,7 @@
 }
 
 .popupButton {
-    background-color: var(--onlyfriends-grey);
+    background-color: var(--chatter-brown);
     border: none;
     color: white;
     padding: 15px;

@@ -14,11 +14,12 @@
 .chatInput > form > input {
 	position: fixed;
 	bottom: 30px;
-	width: 60%;
+	width: 65%;
 	border: 1px solid gray;
     outline: none;
-	border-radius: 3px;
-	padding: 20px;
+	border-radius: 10px;
+	padding: 15px 20px;
+	margin-right: 50px;
 }
 
 .chatInput > form > button {
@@ -31,13 +32,9 @@
 	background-color: #52acc7;
 }
 
-.chat_inputBackground {
-	display:none;
-	background-color: var(--chatter-black);
+.sendIcon {
 	position: fixed;
 	display: flex;
-	justify-content: center;
-	bottom: 0px;
-	width: 100%;
-	padding: 40px;
+	left: 1650px;
+	top: 790px;
 }

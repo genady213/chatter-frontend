@@ -1,5 +1,6 @@
 import { HomePage } from './pages/HomePage/HomePage';
 import { LoginPage } from './pages/LoginPage/LoginPage';
+import { SettingsPage } from './pages/SettingsPage/SettingsPage';
 import { AboutUs } from "./pages/AboutUs/AboutUs";
 import { CompanyPolicy } from "./pages/CompanyPolicy/CompanyPolicy";
 import { TermsAndConditions } from "./pages/TermsAndConditions/TermsAndConditions";
@@ -17,7 +18,8 @@ function App() {
           <Route path="/CompanyPolicy/*" element={<CompanyPolicy />} />
           <Route path="/TermsAndConditions/*" element={<TermsAndConditions />} />
       <Route path="/Register/*" element={<RegisterPage />} />
-      <Route path="/Home/*" element={<HomePage />} />
+          <Route path="/Home/*" element={<HomePage />} />
+          <Route path="/Settings/*" element={<SettingsPage />} />
     </Routes>
   );
 }

@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useEvent, useRef } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import "./Chat.css"
 import Message from "./Message"
 import ChatInput from "./ChatInput"
 import apiClient from "../../apiClient"
 import StarBorderOutlineIcon from "@material-ui/icons/StarBorderOutlined"
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined"
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import Cookies from "js-cookie"
 import axios from "axios"
 import Pusher from 'pusher-js';
@@ -18,21 +19,28 @@ export function Chat() {
 	const [noMessages, setNoMessages] = useState(false)
 
 	function pusherUpdate() {
-		apiClient.get('/conversation/' + roomId
-			, { headers: { "Authorization": `${Cookies.get('token')}` } })
-			.then((response) => {
-				console.log(response.data.messages);
-				if (!roomMessages.length) { setNoMessages(false) }
-				setRoomMessages(response.data.messages);
-				//roomMessages.scrollTop = roomMessages.scrollHeight;
-			}, (error) => {
-				console.log(error);
-			});
-		var objDiv = document.getElementById("chat");
-		objDiv.scrollTop = objDiv.scrollHeight;
-	};
-
-	///////////////////////PUSHER
+	apiClient.get('/conversation/' + roomId
+	  , { headers: {"Authorization" : `${Cookies.get('token')}`} })
+	  .then((response) => {
+			console.log(response.data.messages);
+			if (!roomMessages.length){setNoMessages(false)}
+			setRoomMessages(response.data.messages);
+	  }, (error) => {
+		console.log(error);
+	  });};
+	  let navigate = useNavigate();
+	  function deleteChannel() {
+		apiClient.delete('/conversation/' + roomId
+		  , { headers: {"Authorization" : `${Cookies.get('token')}`} })
+		  .then((response) => {
+				console.log(response.data);
+				let path = `/Home/`;
+        		navigate(path);
+		  }, (error) => {
+			console.log(error);
+		  });};
+	
+///////////////////////PUSHER
 
 	pusher.connection.bind("connected", () => {
 		console.log("Websocket Connected");
@@ -89,11 +97,11 @@ export function Chat() {
 	const chatMessages = noMessages ? (
 		<Message noMessages={noMessages} />
 	) : (
-		roomMessages.map(({ message, _id, timeSent }) => (
+		roomMessages.map(({ message, _id, timeSent, username}) => (
 			<Message
 				message={message}
 				timestamp={timeSent}
-				user={_id}
+				user={username}
 				key={timeSent}
 			/>
 		))
@@ -102,12 +110,14 @@ export function Chat() {
 	return (
 		/*<div className="scroll">*/
 		<div className="chat">
-			<div className="chat_inputBackground">hi</div>
+			{/*<div className="chat_inputBackground">hi</div>*/}
 			<div className="chat_header">
 				<div className="chat_headerLeft">
 					<h4 className="chat_channelName">
 						<span># {roomDetails?.name}</span>
 						<StarBorderOutlineIcon />
+						<DeleteOutlineIcon className="DeleteChannel"
+						onClick={deleteChannel}/>
 					</h4>
 				</div>
 				<div className="chat_headerRight">
@@ -117,7 +127,7 @@ export function Chat() {
 				</div>
 			</div>
 			<div className="chat_messages">{chatMessages}</div>
-			
+			<div className="chat_inputBackground">hi</div>
 			<ChatInput channelName={roomDetails?.name} channelId={roomId} />
 		</div>
 		/*</div>*/

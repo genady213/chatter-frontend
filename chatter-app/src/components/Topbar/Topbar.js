@@ -47,7 +47,12 @@ export function Topbar() {
     Cookies.set('userid', '');
     let path = `/`;
     navigate(path);
-  };
+    };
+
+    const goToSettings = () => {
+        let path = `/SettingsPage/SettingsPage`;
+        navigate(path);
+    };
 
   const onChange = (event) => {
     setCurrInput(event.target.value); //this is the current input user has typed in
@@ -65,10 +70,10 @@ export function Topbar() {
 
   return (
     <div>
-      <div className="topbar">
-        <div className="left">
-          <SettingsIcon />
-        </div>
+          <div className="topbar">
+          <div className="left" onClick={goToSettings}>
+            <SettingsIcon />
+          </div>
         <img className="logo" src="/chatterLogo.png" width="75" height="75" />
 
         <div className="right">
@@ -78,9 +83,9 @@ export function Topbar() {
             src={user?.photoURL}
           />
           <div className="logoutcontent">
-            <p type="submit" value="submit" onClick={logOut}>
+            <h4 type="submit" value="submit" onClick={logOut}>
               Logout
-            </p>
+            </h4>
           </div>
         </div>
       </div>

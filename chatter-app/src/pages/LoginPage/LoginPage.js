@@ -98,7 +98,20 @@ export function LoginPage() {
           </form>
         </div>
       </div>
-      <div className="login-middle-container"></div>
+        <div className="login-middle-container">
+          <div className="imagesContainer">
+            <div className="textHeader"><h1>A New Way To Connect and Meetup</h1></div>
+            <div className="collageContainer">
+              <img src="/LoginImg-1.png" className="img1" alt="image1"></img>
+              <img src="/LoginImg-2.png" className="img2" alt="image2"></img>
+              <img src="/LoginImg-3.png" className="img3" alt="image3"></img>
+              <img src ="/LoginImg-4.png" className="img4" alt="image4"></img>
+            </div>
+            <div className="chatImage">
+              <img src ="/LoginImg-5.png" className="img5" alt="image4"></img>
+            </div>
+          </div>
+      </div>
       <Footer />
     </div>
   );
