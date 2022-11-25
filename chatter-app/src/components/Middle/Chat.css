@@ -29,12 +29,79 @@
 	display: flex;
 	align-items: center;
 	font-size: 14px;
+	padding: 10px;
+}
+.chat_headerRight{
+	border: none;
+	background-color: inherit;
 }
 
 .chat_headerRight > p > .MuiSvgIcon-root {
 	margin-right: 5px;
 	font-size: 16px;
 }
+.chat_headerRight:hover {
+	cursor: pointer;
+	background-color: rgb(175, 175, 175);
+}
+
+.DeleteChannel{
+	padding: 10px;
+}
+
 .DeleteChannel:hover {
 	cursor: pointer;
+	background-color: rgb(175, 175, 175);
 }
+
+.modal2 {
+	width: 400px;
+    font-size: 12px;
+    border: 1px solid black;
+    background-color: white;
+}
+
+    .modal2 > .channelDetails {
+        width: 100%;
+        border-bottom: 1px solid black;
+        font-size: 18px;
+        text-align: center;
+        background-color: var(--chatter-brown);
+        color: white;
+    }
+
+    .modal2 > .content {
+        width: 100%;
+        padding: 10px 5px;
+    }
+	.modal2 > .close2 {
+		cursor: pointer;
+		position: absolute;
+		display: block;
+		padding: 2px 5px;
+		line-height: 20px;
+		right: -10px;
+		top: -10px;
+		font-size: 24px;
+		background: #ffffff;
+		border-radius: 18px;
+		border: 1px solid #cfcece;
+	}
+
+.roomMemberDetails{
+	font-size: 15px;
+	margin-left: 10px;
+}
+
+.roomUsers{
+	font-size: 12px;
+	margin-left: 20px;
+}
+
+.roomEventDetails{
+	font-size: 15px;
+	margin-left: 10px;
+}
+
+
+

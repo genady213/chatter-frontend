@@ -2,6 +2,7 @@ import React, { useState, useEffect, useEvent, useRef } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import "./Chat.css"
 import Message from "./Message"
+import Popup from 'reactjs-popup';
 import ChatInput from "./ChatInput"
 import apiClient from "../../apiClient"
 import StarBorderOutlineIcon from "@material-ui/icons/StarBorderOutlined"
@@ -16,6 +17,7 @@ export function Chat() {
 	const { roomId } = useParams()
 	const [roomDetails, setRoomDetails] = useState(null)
 	const [roomMessages, setRoomMessages] = useState([])
+	const [roomUsers, setRoomUsers] = useState([])
 	const [noMessages, setNoMessages] = useState(false)
 
 	function pusherUpdate() {
@@ -47,7 +49,7 @@ export function Chat() {
 	});
 	const channel = pusher.subscribe(Cookies.get('userid'));
 createConversationBind(roomId);
-
+/*
 channel.bind("user-event", function (data) {
     switch (data.eventType) {
         case "create-conversation":
@@ -56,7 +58,7 @@ channel.bind("user-event", function (data) {
     }
     console.log(data);
 });
-
+*/
 function createConversationBind(channelID) {
     const conversationChannel = pusher.subscribe(channelID);
     conversationChannel.bind("message", function (data) {
@@ -78,6 +80,7 @@ function createConversationBind(channelID) {
 			console.log(response.data.messages);
 			setRoomMessages(response.data.messages);
 			setRoomDetails(response.data);
+			setRoomUsers(response.data.users);
 	  }, (error) => {
 		console.log(error);
 	  }); 
@@ -107,6 +110,12 @@ function createConversationBind(channelID) {
 		))
 	)
 
+	const roomUse = (
+		roomUsers.map(({ username}) => (
+			<div>{username}</div>
+		))
+	)
+
 	return (
 		<div className="chat">
 			<div className="chat_header">
@@ -118,11 +127,27 @@ function createConversationBind(channelID) {
 						onClick={deleteChannel}/>
 					</h4>
 				</div>
-				<div className="chat_headerRight">
-					<p>
-						<InfoOutlinedIcon /> Details
-					</p>
-				</div>
+				<Popup
+				trigger={<button className="chat_headerRight"> <p>
+				<InfoOutlinedIcon /> Details
+			</p> </button>}
+				modal
+				nested
+			>
+				{close => (
+					<div className="modal2">
+						<button className="close2" onClick={close}>
+							&times;
+						</button>
+						<div className="channelDetails"> {roomDetails?.name}</div>
+						<div className="roomMemberDetails"> Room Members:</div>
+						<div className="roomUsers">{roomUse}</div>
+						<div className="roomEventDetails"> Room Events:</div>
+						<div className="roomEvents">{}</div>
+					</div>
+				)}
+			</Popup>
+				
 			</div>
 			<div className="chat_messages">{chatMessages}</div>
 			<ChatInput channelName={roomDetails?.name} channelId={roomId} />
