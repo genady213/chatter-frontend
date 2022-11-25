@@ -2,8 +2,8 @@
     flex: 0.3;
     padding-bottom: 240px;
     color: white;
-    background-color: var(--onlyfriends-color);
-    border-top: 1px solid #52acc7;
+    background-color: var(--chatter-brown);
+    /*border-top: 1px solid #52acc7;*/
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -28,7 +28,7 @@
 
 
 .button {
-    background-color: var(--onlyfriends-color);
+    background-color: var(--onlyfriends-grey);
     border: none;
     color: white;
     padding: 18px;
@@ -69,9 +69,48 @@
         text-align: center;
     }
 
+ 
+
+.addUserIcon {
+    padding: 0px 90px;
+    margin: auto;
+    border-radius: 10px;
+    margin-left: 180px;
+}
+.addUserIcon:hover {
+    cursor: pointer;
+    color: #ffffff;
+    background-color: var(--chatter-button-gray);
+}
+
 .textFieldArea .textFields {
     margin: 20px;
     right: 30px;
+}
+
+.textFields2 {
+    margin: 20px;
+    left: 90px;
+}
+.textFields2div {
+    display: none;
+}
+
+.textFields3 {
+    margin: 20px;
+    left: 90px;
+}
+.textFields3div {
+    display: none;
+    margin: 20px;
+}
+
+.textFields4 {
+    margin: 20px;
+    left: 90px;
+}
+.textFields4div {
+    display: none;
 }
 
 .popupButtonArea {

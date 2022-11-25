@@ -89,6 +89,9 @@
     background-color: white;
     display: flex;
     flex-direction: column;  
+    position: absolute;
+    width: inherit;
+    z-index: 10;
 }
 
 .dropdown-content {

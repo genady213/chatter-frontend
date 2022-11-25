@@ -49,6 +49,11 @@ export function Topbar() {
     navigate(path);
   };
 
+  const goToSettings = () => {
+    let path = `/Settings`;
+    navigate(path);
+};
+
   const onChange = (event) => {
     setCurrInput(event.target.value); //this is the current input user has typed in
     getUsers(); //sends that current input to make a call to get an array of matching users to that input
@@ -66,8 +71,8 @@ export function Topbar() {
   return (
     <div>
       <div className="topbar">
-        <div className="left">
-          <SettingsIcon />
+        <div className="left" >
+          <SettingsIcon onClick={goToSettings} />
         </div>
         <img className="logo" src="/chatterLogo.png" width="75" height="75" />
 
