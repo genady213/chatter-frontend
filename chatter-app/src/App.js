@@ -5,6 +5,7 @@ import { AboutUs } from "./pages/AboutUs/AboutUs";
 import { CompanyPolicy } from "./pages/CompanyPolicy/CompanyPolicy";
 import { TermsAndConditions } from "./pages/TermsAndConditions/TermsAndConditions";
 import { RegisterPage } from './pages/LoginPage/RegisterPage';
+import { EventsPage } from './pages/EventsPage/EventsPage';
 import { Route, Routes } from 'react-router-dom';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
       <Route path="/Register/*" element={<RegisterPage />} />
       <Route path="/Home/*" element={<HomePage />} />
       <Route path="/Settings/*" element={<SettingsPage />} />
+      <Route path="/Events/*" element={<EventsPage />} />
     </Routes>
   );
 }

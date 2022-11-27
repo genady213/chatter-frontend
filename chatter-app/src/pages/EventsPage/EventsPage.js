@@ -7,9 +7,9 @@ import {
     useNavigate,
   } from 'react-router-dom';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import './SettingsPage.css';
+import './EventsPage.css';
 
-export function SettingsPage() {
+export function EventsPage() {
 
   let navigate = useNavigate();
   const routeChange = () => {
@@ -20,8 +20,8 @@ export function SettingsPage() {
   
 
   return (
-    <div class="settings-body-container">
-      <div className="settings-top-container">
+    <div class="events-body-container">
+      <div className="events-top-container">
         <div
           className="arrow"
           onClick={() => {
@@ -30,11 +30,10 @@ export function SettingsPage() {
         >
           <ArrowBackIosIcon />
         </div>
-        <div className="settings-title">
-          <span>
-            <img src="/chatterLogo.png" width="75" height="75" />
-            <h1>Chatter</h1>
-          </span>
+        <div className="events-title">
+        <h1>Events</h1>
+        <img src="/chatterLogo.png" width="75" height="75" />
+          
         </div>
       </div>
 
