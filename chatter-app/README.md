@@ -1,3 +1,11 @@
+This app is deployed on https://chatter-app-cb0bb.web.app/
+
+To use this project, clone the repo using `git clone` 
+
+Then install all the dependanies using `npm i`
+
+after that you are ready to run using `npm start`
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
