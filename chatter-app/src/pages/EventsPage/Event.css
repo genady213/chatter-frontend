@@ -1,0 +1,10 @@
+.noEvent {
+	display: flex;
+	align-items: center;
+	padding: 20px;
+    color: white;
+    text-align: center;
+    justify-content: center;
+    font-family: 
+        sans-serif;
+}

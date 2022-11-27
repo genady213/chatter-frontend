@@ -12,7 +12,7 @@ export function Message({ noMessages, message, timestamp, user, userImage }) {
 				<h4>
 					{user}
 					<span className="message__timestamp">
-						{new Date(timestamp).toLocaleDateString()}
+						{new Date(timestamp).toLocaleString()}
 					</span>
 				</h4>
 				<p>{message}</p>
