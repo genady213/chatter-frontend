@@ -8,9 +8,13 @@ body{
   overflow: hidden;
 }
 
+.app{
+  height: 100vh;
+}
+
 .app__body {
   padding-top: 50px;
 	display: flex;
-	height: 100vh;
+	height:  calc(100% - 15rem);;
 	background-color: var(--chatter-black);
 }

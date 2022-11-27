@@ -20,6 +20,13 @@ export function Chat() {
 	const [roomUsers, setRoomUsers] = useState([])
 	const [noMessages, setNoMessages] = useState(false)
 
+
+
+	const scrollToBottom = (id) => {
+		const element = document.getElementById(id);
+		element.scrollTop = element.scrollHeight;
+	}
+
 	function pusherUpdate() {
 	apiClient.get('/conversation/' + roomId
 	  , { headers: {"Authorization" : `${Cookies.get('token')}`} })
@@ -27,6 +34,7 @@ export function Chat() {
 			console.log(response.data.messages);
 			if (!roomMessages.length){setNoMessages(false)}
 			setRoomMessages(response.data.messages);
+			scrollToBottom("chatScrollComponent");
 	  }, (error) => {
 		console.log(error);
 	  });};
@@ -81,6 +89,7 @@ function createConversationBind(channelID) {
 			setRoomMessages(response.data.messages);
 			setRoomDetails(response.data);
 			setRoomUsers(response.data.users);
+			scrollToBottom("chatScrollComponent");
 	  }, (error) => {
 		console.log(error);
 	  }); 
@@ -149,8 +158,10 @@ function createConversationBind(channelID) {
 			</Popup>
 				
 			</div>
+			<div id="chatScrollComponent" className="chatMessageContainer">
 			<div className="chat_messages">{chatMessages}</div>
 			<ChatInput channelName={roomDetails?.name} channelId={roomId} />
+			</div>
 		</div>
 	)
 }

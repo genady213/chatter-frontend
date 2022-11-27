@@ -1,6 +1,5 @@
 .sidebar {
     flex: 0.3;
-    padding-bottom: 240px;
     color: white;
     background-color: var(--chatter-brown);
     /*border-top: 1px solid #52acc7;*/

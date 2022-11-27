@@ -2,8 +2,15 @@
 	background-color: white;
 	flex: 0.7;
 	flex-grow: 1;
+}
+
+.chatMessageContainer {
 	overflow-y: auto;
-	padding-bottom: 350px;
+	height: calc(100% - 79px);
+}
+
+.chat_messages{
+	margin-bottom: 80px;
 }
 
 .chat_header {
