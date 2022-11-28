@@ -110,4 +110,75 @@
 }
 
 
+.eventmodal {
+	width: 400px;
+    font-size: 12px;
+    border: 1px solid black;
+    background-color: white;
+}
 
+    .eventmodal > .EventTop {
+        width: 100%;
+        border-bottom: 1px solid black;
+        font-size: 18px;
+        text-align: center;
+        background-color: var(--chatter-brown);
+        color: white;
+    }
+
+    .eventmodal > .content {
+        width: 100%;
+        padding: 10px 5px;
+    }
+	.eventmodal > .close3 {
+		cursor: pointer;
+		position: absolute;
+		display: block;
+		padding: 2px 5px;
+		line-height: 20px;
+		right: -10px;
+		top: -10px;
+		font-size: 24px;
+		background: #ffffff;
+		border-radius: 18px;
+		border: 1px solid #cfcece;
+	}
+	.eventmodal > .EventtextFieldArea {
+        width: 100%;
+        padding: 0px 30px;
+        margin: auto;
+        text-align: center;
+    }
+
+	.EventtextFieldArea .textFields {
+		margin: 20px;
+		right: 30px;
+	}
+
+	.error-event{
+		visibility: hidden;
+		color: red;
+		font-size: small;
+		margin-right: 40px;
+	}
+
+
+	.EventCreate > p {
+		display: flex;
+		align-items: center;
+		font-size: 14px;
+		padding: 10px;
+	}
+	.EventCreate{
+		border: none;
+		background-color: inherit;
+	}
+	
+	.EventCreate > p > .MuiSvgIcon-root {
+		margin-right: 5px;
+		font-size: 16px;
+	}
+	.EventCreate:hover {
+		cursor: pointer;
+		background-color: rgb(175, 175, 175);
+	}

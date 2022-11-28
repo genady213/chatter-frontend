@@ -3,33 +3,13 @@ import { useStateValue } from "../../StateProvider";
 import Cookies from "js-cookie";
 import apiClient from "../../apiClient";
 import "./ChatInput.css";
+import Message from "./Message";
+import { setEventObj } from "./Chat";
 
 export function ChatInput({ channelName, channelId }) {
   const [input, setInput] = useState('');
   const [{ user }] = useStateValue();
 
-  /*
-  async function sendData(name, user, userImage, message, time) {
-    var theans = '';
-    const req = await axios
-      .post('/home/uniqueTokenForChat', {
-        username: user,
-        userImage: userImage,
-        userMessage: message,
-        time: time,
-      })
-      .then(
-        (response) => {
-          console.log(response);
-          theans = response.data.message;
-          return theans;
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    return theans;
-  }*/
 
   const sendMessage = (e) => {
     e.preventDefault()
@@ -42,6 +22,12 @@ export function ChatInput({ channelName, channelId }) {
 	  , { headers: {"Authorization" : `${Cookies.get('token')}`} })
 	  .then((response) => {
 			console.log(response);
+      if(response.data.event){
+        console.log(response.data.event);
+        setEventObj(response.data.event);
+        sessionStorage.setItem("event", JSON.stringify(response.data.event));
+        Cookies.set('event2', response.data.event);
+      }
 	  }, (error) => {
 		console.log(error);
 	  });}
