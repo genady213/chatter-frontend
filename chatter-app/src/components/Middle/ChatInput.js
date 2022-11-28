@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 import apiClient from "../../apiClient";
 import "./ChatInput.css";
 import Message from "./Message";
-import { setEventObj } from "./Chat";
+import { setEventObj, eventObj } from "./Chat";
 
 export function ChatInput({ channelName, channelId }) {
   const [input, setInput] = useState('');
@@ -25,6 +25,7 @@ export function ChatInput({ channelName, channelId }) {
       if(response.data.event){
         console.log(response.data.event);
         setEventObj(response.data.event);
+        console.log(eventObj);
       }
 	  }, (error) => {
 		console.log(error);

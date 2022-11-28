@@ -28,9 +28,19 @@ export function Chat() {
 	const [roomUsers, setRoomUsers] = useState([])
 	const [noMessages, setNoMessages] = useState(false)
 
+	const [theEventObject, setTheEventObject] = useState(null)
 	
 	const [open, setOpen] = useState(false);  
-	const closeModal = () => setOpen(false);
+	const closeModal = () => {
+		setOpen(false)
+		setEve();
+		setLoc();
+		setDet();
+		setPur();
+		setTim();
+		setTheEventObject()
+		setEventObj()
+	};
 	const eventName = useRef();
 	const location = useRef();
 	const details = useRef();
@@ -60,10 +70,12 @@ export function Chat() {
 		setTim(event.target.value);
 	  };
 
+	  
+
 	useEffect(() => {
 		console.log("eventObj");
-		console.log(eventObj);
-		if(eventObj){
+		console.log(theEventObject);
+		if(theEventObject){
 			setOpen(o => !o);
 			if(eventObj.name){
 				setEve(eventObj.name);
@@ -82,7 +94,7 @@ export function Chat() {
 			}
 		}
 		
-	}, [eventObj])
+	}, [theEventObject])
 
 	const scrollToBottom = (id) => {
 		const element = document.getElementById(id);
@@ -164,6 +176,8 @@ function createConversationBind(channelID) {
 	useEffect(() => {
 		if (!roomMessages.length) setNoMessages(true)
 		else setNoMessages(false)
+		
+		setTheEventObject(eventObj)
 	}, [roomMessages])
 
 
