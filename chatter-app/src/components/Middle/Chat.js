@@ -29,7 +29,6 @@ export function Chat() {
 	const [noMessages, setNoMessages] = useState(false)
 
 	
-
 	const [open, setOpen] = useState(false);  
 	const closeModal = () => setOpen(false);
 	const eventName = useRef();

@@ -25,8 +25,6 @@ export function ChatInput({ channelName, channelId }) {
       if(response.data.event){
         console.log(response.data.event);
         setEventObj(response.data.event);
-        sessionStorage.setItem("event", JSON.stringify(response.data.event));
-        Cookies.set('event2', response.data.event);
       }
 	  }, (error) => {
 		console.log(error);
