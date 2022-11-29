@@ -96,6 +96,20 @@ export function Chat() {
 		
 	}, [theEventObject])
 
+	async function sendEvent(name, location, details, purpose, time) {
+		var theans = "";
+		const req = await apiClient.post('/event', {"name":name,"location":location,"details":details ,"purpose":purpose, "conversationId":roomId,"time":time}
+		, { headers: {"Authorization" : `${Cookies.get('token')}`} })
+		.then((response) => {
+		  console.log(response.data.message);
+		  theans = response.data.message;
+		return theans;
+		}, (error) => {
+		  console.log(error);
+		});
+		return theans;
+	  }
+
 	const scrollToBottom = (id) => {
 		const element = document.getElementById(id);
 		element.scrollTop = element.scrollHeight;
@@ -120,6 +134,7 @@ export function Chat() {
 				console.log(response.data);
 				let path = `/Home/`;
         		navigate(path);
+				window.location.reload(true);
 		  }, (error) => {
 			console.log(error);
 		  });};
@@ -236,8 +251,8 @@ function createConversationBind(channelID) {
 								<button className="popupButton"
 								onClick={async() => {
 										console.log(location.current.value);
-										const redirectSuccess = '';//await sendData2(convoName.current.value);
-												if(redirectSuccess == "Conversation Created"){    
+										const redirectSuccess = await sendEvent(eventName.current.value, location.current.value, details.current.value, purpose.current.value, time.current.value);
+												if(redirectSuccess == "Event Created"){    
 													closeModal();
 												  }else{
 													document.getElementById("errorEvent").style.visibility = 'visible';

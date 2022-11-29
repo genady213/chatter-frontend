@@ -19,7 +19,7 @@ export function EventsPage() {
 	const [theEvents, setTheEvents] = useState([])
 	const [noEvents, setNoEvents] = useState(false)
 
-
+/*
   function getEvents() {
     apiClient.get('/event/user/' + Cookies.get('userid')
       , { headers: {"Authorization" : `${Cookies.get('token')}`} })
@@ -29,7 +29,7 @@ export function EventsPage() {
         setTheEvents(response.data);
       }, (error) => {
       console.log(error);
-      });};
+      });};*/
 
   let navigate = useNavigate();
   const routeChange = () => {
@@ -43,7 +43,8 @@ export function EventsPage() {
       , { headers: {"Authorization" : `${Cookies.get('token')}`} })
       .then((response) => {
         console.log(response.data);
-        setTheEvents(response.data);
+        if (!theEvents.length){setNoEvents(false)}
+        setTheEvents(Object.values(response.data));
       }, (error) => {
       console.log(error);
       });
@@ -51,23 +52,25 @@ export function EventsPage() {
 
 		
 	}, [])
-
+/*
 	useEffect(() => {
 		if (!theEvents.length) setNoEvents(true)
 		else setNoEvents(false)
-	}, [theEvents])
+	}, [theEvents])*/
 
 
 
 	const userEvents = noEvents ? (
 		<Event noEvents={noEvents} />
 	) : (
-		theEvents.map(({ message, _id, timeSent, username}) => (
+		theEvents.map((event) => (
 			<Event
-				message={message}
-				timestamp={timeSent}
-				user={username}
-				key={timeSent}
+      name={event.name}
+      details={event.details}
+      location={event.location}
+				key={event._id}
+        time={event.time}
+        purpose={event.purpose}
 			/>
 		))
 	)
