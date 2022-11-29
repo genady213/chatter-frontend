@@ -14,6 +14,9 @@ import Cookies from "js-cookie"
 import axios from "axios"
 import Pusher from 'pusher-js';
 import { pusher } from "../../client"
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 export var eventObj;
 
@@ -28,6 +31,8 @@ export function Chat() {
 	const [roomUsers, setRoomUsers] = useState([])
 	const [noMessages, setNoMessages] = useState(false)
 
+	const [startDate, setStartDate] = useState(new Date());
+
 	const [theEventObject, setTheEventObject] = useState(null)
 	
 	const [open, setOpen] = useState(false);  
@@ -37,7 +42,8 @@ export function Chat() {
 		setLoc();
 		setDet();
 		setPur();
-		setTim();
+		//setTim();
+		setStartDate(new Date())
 		setTheEventObject()
 		setEventObj()
 	};
@@ -45,14 +51,14 @@ export function Chat() {
 	const location = useRef();
 	const details = useRef();
 	const purpose = useRef();
-	const time = useRef();
+	//const time = useRef();
 
 	
 	const [eve, setEve] = useState('');
 	const [loc, setLoc] = useState('');
 	const [det, setDet] = useState('');
 	const [pur, setPur] = useState('');
-	const [tim, setTim] = useState('');
+	//const [tim, setTim] = useState('');
 
 	const handleChange1 = event => {
 		setEve(event.target.value);
@@ -66,9 +72,9 @@ export function Chat() {
 	  const handleChange4 = event => {
 		setPur(event.target.value);
 	  };
-	  const handleChange5 = event => {
-		setTim(event.target.value);
-	  };
+	 // const handleChange5 = event => {
+	//	setTim(event.target.value);
+	  //};
 
 	  
 
@@ -90,7 +96,8 @@ export function Chat() {
 				setPur(eventObj.purpose);
 			}
 			if(eventObj.datetime){
-				setTim(eventObj.datetime);
+				//setTim(eventObj.datetime);
+				setStartDate(new Date(eventObj.datetime))
 			}
 		}
 		
@@ -245,13 +252,14 @@ function createConversationBind(channelID) {
 							<TextField className="textFields" label="Event Details" onChange={handleChange3} value={det} inputRef={details} />
 							<TextField className="textFields" label="Event Purpose" onChange={handleChange4} value={pur} inputRef={purpose} />
 
-							<TextField className="textFields" label="When" onChange={handleChange5} value={tim} inputRef={time} />
+							{/*<TextField className="textFields" label="When" onChange={handleChange5} value={tim} inputRef={time} />*/}
+							<DatePicker selected={startDate} onChange={(date) => setStartDate(date)} showTimeSelect />
 							<div id = "errorEvent" className="error-event">Event Create Failed!</div>
 							<div className="popupButtonArea">
 								<button className="popupButton"
 								onClick={async() => {
-										console.log(location.current.value);
-										const redirectSuccess = await sendEvent(eventName.current.value, location.current.value, details.current.value, purpose.current.value, time.current.value);
+										console.log(startDate.toISOString());
+										const redirectSuccess = await sendEvent(eventName.current.value, location.current.value, details.current.value, purpose.current.value, startDate.toISOString());
 												if(redirectSuccess == "Event Created"){    
 													closeModal();
 												  }else{
