@@ -1,10 +1,10 @@
-import React, { useState } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import { useStateValue } from "../../StateProvider";
 import Cookies from "js-cookie";
 import apiClient from "../../apiClient";
 import "./ChatInput.css";
 import Message from "./Message";
-import { setEventObj, eventObj } from "./Chat";
+import { setEventObj, eventObj, getEventObj } from "./Chat";
 
 export function ChatInput({ channelName, channelId }) {
   const [input, setInput] = useState('');
@@ -25,7 +25,7 @@ export function ChatInput({ channelName, channelId }) {
       if(response.data.event){
         console.log(response.data.event);
         setEventObj(response.data.event);
-        console.log(eventObj);
+        console.log(getEventObj());
       }
 	  }, (error) => {
 		console.log(error);

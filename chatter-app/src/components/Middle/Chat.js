@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useEvent, useRef } from "react"
+import React, { useState, useEffect, useEvent, useRef, useCallback } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import "./Chat.css"
 import Message from "./Message"
@@ -24,6 +24,10 @@ export function setEventObj(eventObject){
 	eventObj = eventObject;
 }
 
+export function getEventObj(){
+	return eventObj;
+}
+
 export function Chat() {
 	const { roomId } = useParams()
 	const [roomDetails, setRoomDetails] = useState(null)
@@ -31,9 +35,12 @@ export function Chat() {
 	const [roomUsers, setRoomUsers] = useState([])
 	const [noMessages, setNoMessages] = useState(false)
 
+	const [theEvents, setTheEvents] = useState([])
+	const [noEvents, setNoEvents] = useState(false)
+
 	const [startDate, setStartDate] = useState(new Date());
 
-	const [theEventObject, setTheEventObject] = useState(null)
+	//const [theEventObject, setTheEventObject] = useState(null)
 	
 	const [open, setOpen] = useState(false);  
 	const closeModal = () => {
@@ -44,7 +51,7 @@ export function Chat() {
 		setPur();
 		//setTim();
 		setStartDate(new Date())
-		setTheEventObject()
+		//setTheEventObject()
 		setEventObj()
 	};
 	const eventName = useRef();
@@ -76,12 +83,13 @@ export function Chat() {
 	//	setTim(event.target.value);
 	  //};
 
-	  
+	
+
 
 	useEffect(() => {
 		console.log("eventObj");
-		console.log(theEventObject);
-		if(theEventObject){
+		console.log(eventObj);
+		if(eventObj){
 			setOpen(o => !o);
 			if(eventObj.name){
 				setEve(eventObj.name);
@@ -101,13 +109,38 @@ export function Chat() {
 			}
 		}
 		
-	}, [theEventObject])
+	}, [eventObj])
+
+	useEffect(() => {
+	
+		
+		const req = apiClient.get('/event/conversation/' + roomId
+  , { headers: {"Authorization" : `${Cookies.get('token')}`} })
+  .then((response) => {
+	console.log(response.data);
+	if (!theEvents.length){setNoEvents(false)}
+	setTheEvents(Object.values(response.data));
+  }, (error) => {
+  console.log(error);
+  });
+
+
+	
+}, [])
 
 	async function sendEvent(name, location, details, purpose, time) {
 		var theans = "";
 		const req = await apiClient.post('/event', {"name":name,"location":location,"details":details ,"purpose":purpose, "conversationId":roomId,"time":time}
 		, { headers: {"Authorization" : `${Cookies.get('token')}`} })
+		.then((response) => {const req = apiClient.get('/event/conversation/' + roomId
+		, { headers: {"Authorization" : `${Cookies.get('token')}`} })
 		.then((response) => {
+		  console.log(response.data);
+		  if (!theEvents.length){setNoEvents(false)}
+		  setTheEvents(Object.values(response.data));
+		}, (error) => {
+		console.log(error);
+		});
 		  console.log(response.data.message);
 		  theans = response.data.message;
 		return theans;
@@ -199,7 +232,6 @@ function createConversationBind(channelID) {
 		if (!roomMessages.length) setNoMessages(true)
 		else setNoMessages(false)
 		
-		setTheEventObject(eventObj)
 	}, [roomMessages])
 
 
@@ -220,6 +252,12 @@ function createConversationBind(channelID) {
 	const roomUse = (
 		roomUsers.map(({ username}) => (
 			<div>{username}</div>
+		))
+	)
+
+	const roomEve = (
+		theEvents.map((event) => (
+			<div>"{event.name}"   What:{event.details}   Why:{event.purpose}   Where:{event.location}    When:{new Date(event.time).toLocaleString()}</div>
 		))
 	)
 
@@ -289,7 +327,7 @@ function createConversationBind(channelID) {
 						<div className="roomMemberDetails"> Room Members:</div>
 						<div className="roomUsers">{roomUse}</div>
 						<div className="roomEventDetails"> Room Events:</div>
-						<div className="roomEvents">{}</div>
+						<div className="roomEvents">{roomEve}</div>
 					</div>
 				)}
 			</Popup>
