@@ -2,7 +2,7 @@ import React from "react"
 import "./Message.css"
 import FaceIcon from '@mui/icons-material/Face';
 
-export function Message({ noMessages, message, timestamp, user, userImage }) {
+export function Message({ noMessages, message, timestamp, user}) {
 	if (noMessages) return <div className="message">No messages...</div>
 
 	return (
@@ -12,7 +12,7 @@ export function Message({ noMessages, message, timestamp, user, userImage }) {
 				<h4>
 					{user}
 					<span className="message__timestamp">
-						{new Date(timestamp).toLocaleDateString()}
+						{new Date(timestamp).toLocaleString()}
 					</span>
 				</h4>
 				<p>{message}</p>

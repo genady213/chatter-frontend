@@ -20,8 +20,8 @@ export function SettingsPage() {
   
 
   return (
-    <div class="register-body-container">
-      <div className="register-top-container">
+    <div class="settings-body-container">
+      <div className="settings-top-container">
         <div
           className="arrow"
           onClick={() => {
@@ -30,7 +30,7 @@ export function SettingsPage() {
         >
           <ArrowBackIosIcon />
         </div>
-        <div className="register-title">
+        <div className="settings-title">
           <span>
             <img src="/chatterLogo.png" width="75" height="75" />
             <h1>Chatter</h1>

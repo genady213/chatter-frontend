@@ -1,0 +1,35 @@
+.noEvent {
+	display: flex;
+	align-items: center;
+	padding: 20px;
+    color: white;
+    text-align: center;
+    justify-content: center;
+    font-family: 
+        sans-serif;
+}
+
+.event {
+	display: flex;
+	justify-content: space-between;
+	padding: 20px;
+    background-color: var(--chatter-text-field);
+    border-radius: 20px;
+    margin-top: 10px;
+}
+
+
+
+.event__name {
+	margin-left: 10px;
+    font-weight: 800;
+    font-size: large;
+}
+
+
+
+.event__location {
+    display: flex;
+	text-align:center;
+    font-weight: 600;
+}

@@ -3,6 +3,7 @@ import './Topbar.css';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SearchIcon from '@mui/icons-material/Search';
 import SettingsIcon from '@mui/icons-material/Settings';
+import EventIcon from '@mui/icons-material/Event';
 import { useStateValue } from '../../StateProvider';
 import Cookies from 'js-cookie';
 
@@ -53,6 +54,10 @@ export function Topbar() {
     let path = `/Settings`;
     navigate(path);
 };
+const goToEvents = () => {
+  let path = `/Events`;
+  navigate(path);
+};
 
   const onChange = (event) => {
     setCurrInput(event.target.value); //this is the current input user has typed in
@@ -77,6 +82,7 @@ export function Topbar() {
         <img className="logo" src="/chatterLogo.png" width="75" height="75" />
 
         <div className="right">
+        <EventIcon className="eventButton" onClick={goToEvents} />
           <AccountCircleIcon
             className="profileAvatar"
             alt={user?.displayName}
