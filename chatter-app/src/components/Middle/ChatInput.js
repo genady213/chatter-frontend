@@ -37,6 +37,8 @@ export function ChatInput({ channelName, channelId }) {
   return (
     <div className="chatInput">
       <form>
+        <div className="chat_inputBackground">hi</div>
+        <img className="sendIcon" src="/chatterLogoBlack.png" width="100" height="100" />
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}

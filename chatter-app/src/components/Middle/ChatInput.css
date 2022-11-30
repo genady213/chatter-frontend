@@ -11,12 +11,13 @@
 
 .chatInput > form > input {
 	position: fixed;
-	bottom: 30px;
-	width: 60%;
-	border: 1px solid gray;
+	bottom: 17px;
+	width: 65%;
+    border: 1px solid gray;
     outline: none;
-	border-radius: 3px;
-	padding: 20px;
+    border-radius: 10px;
+    padding: 15px 20px;
+    margin-right: 50px;
 }
 
 .chatInput > form > button {
@@ -27,4 +28,19 @@
 
 .chatInput > form > button:hover {
 	background-color: #52acc7;
+}
+
+	.chatInput > form > img {
+		position: fixed;
+		margin-left: 34%;
+		bottom: -17px;
+	}
+
+.chat_inputBackground {
+	position: fixed;
+	bottom: -20px;
+	background-color: var(--chatter-grey);
+	right: 1.05%;
+	width: 100%;
+	padding: 40px;
 }

@@ -13,6 +13,11 @@
 
 .message__info {
 	margin-left: 10px;
+	background-color: var(--chatter-super-light-grey);
+	border: 1px solid gray;
+	outline: none;
+	border-radius: 10px;
+	padding: 5px;
 }
 
 .message__info > h4 {
@@ -22,7 +27,7 @@
 
 .message__timestamp {
 	margin-left: 10px;
-	color: gray;
+	color: var(--chatter-black);
 	font-weight: 300;
 	font-size: 13px;
 }

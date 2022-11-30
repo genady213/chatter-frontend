@@ -5,6 +5,7 @@
     /*border-top: 1px solid #52acc7;*/
     overflow-y: auto;
     overflow-x: hidden;
+    z-index:1;
 }
 
     .sidebar hr {
