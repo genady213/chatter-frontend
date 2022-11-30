@@ -1,28 +1,99 @@
+.register-body-container {
+    position: fixed;
+    width: 100%;
+    background-color: var(--chatter-brown);
+    height: 100%;
+    z-index: -1;
+    display: flex;
+    flex-direction: column;
+}
+
 .register-top-container{
     display:flex;
     width:100%;
     height: 20rem;
     background-color: var(--onlyfriends-grey);
+    height: 22rem;
+    background-color: var(--chatter-black);
     color: white;
-    
 }
 
+@import url(https://fonts.googleapis.com/css?family=Pacifico);
+
+.register-title {
+    display:flex;
+    width:100%;
+    justify-content: center;
+    align-self: center;
+    color: white;
+    margin-right: 3rem;
+}
+
+.register-title span{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.register-title span h1 {
+    font-family: 'Pacifico',
+        Verdana,
+        Geneva,
+        Tahoma,
+        sans-serif;
+        font-size: 65px;
+        font-weight: 10;
+        margin-left: 1rem;
+}
+
+
+.register-title img {
+    margin-top: 1rem;
+  width:40%;
+}
 
 
 .register-form-container{
     display:flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
-    align-self: center;
-    width: 12%;
+    align-content: center;
+    margin-top: 8rem;
+    width: 40%;
     height: auto;
-    margin-left: auto;
-    margin-right: 2rem;
+    margin-left: 40%;
+    color: #FFFFFF;
+  
+}
+
+.register-form-container a {
+   margin-left: 3rem;
+    color: #FFFFFF;
+    text-decoration: none;
+     margin-right: 3rem;
+     margin-bottom:3rem;
+
+}
+
+.register-form-container a:hover {
+    color: #4c98e6;
+}
+
+.register-loginFields {
+    color: gray;
+    border: 1px gray solid;
+    border-radius: 15px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    padding: 7px 20px;
+    position: relative;
+    top: 20px;
+    width:50%
 }
 
 .register-button {
-    background-color: var(--onlyfriends-color);
-    border-radius: 8px;
+    background-color: var(--chatter-button-gray);
+    border-radius: 30px;
     border-style: none;
     box-sizing: border-box;
     color: #FFFFFF;
@@ -45,6 +116,7 @@
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
+    margin-top: 1.5rem;
 
 }
 

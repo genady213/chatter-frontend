@@ -1,0 +1,49 @@
+.events-body-container {
+    position: fixed;
+    width: 100%;
+    background-color: var(--chatter-brown);
+    height: 100%;
+    z-index: -1;
+    display: flex;
+    flex-direction: column;
+}
+
+.events-top-container{
+    display:flex;
+    width:100%;
+    background-color: var(--onlyfriends-grey);
+    height: 10rem;
+    background-color: var(--chatter-black);
+    color: white;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Pacifico);
+
+.events-title {
+    display:flex;
+    width:100%;
+    justify-content: center;
+    align-self: center;
+    color: white;
+    margin-right: 3rem;
+}
+
+
+
+.events-title h1 {
+    font-family: 'Pacifico',
+        Verdana,
+        Geneva,
+        Tahoma,
+        sans-serif;
+        font-size: 65px;
+        font-weight: 10;
+        margin-left: 1rem;
+    flex: 0.9;
+    text-align: center;
+}
+
+
+.events-title img {
+    margin-top: 1rem;
+}

@@ -3,6 +3,7 @@
 }
 
 .chatInput > form {
+	color: black;
 	position: relative;
 	display: flex;
 	justify-content: center;
@@ -13,6 +14,7 @@
 	bottom: 30px;
 	width: 60%;
 	border: 1px solid gray;
+    outline: none;
 	border-radius: 3px;
 	padding: 20px;
 }

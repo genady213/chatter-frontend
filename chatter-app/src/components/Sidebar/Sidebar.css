@@ -1,26 +1,151 @@
 .sidebar {
     flex: 0.3;
-	padding-bottom: 60px;
     color: white;
-    background-color: var(--onlyfriends-color);
-    border-top: 1px solid #52acc7;
-	overflow-y: auto;
-	overflow-x: hidden;
+    background-color: var(--chatter-brown);
+    /*border-top: 1px solid #52acc7;*/
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
-.sidebar hr {
-	margin: 10px 0;
-	border: 1px solid #52acc7;
-	border-top: none;
-	border-right: none;
-	border-left: none;
-}
+    .sidebar hr {
+        margin: 10px 0;
+        border: 1px solid #52acc7;
+        border-top: none;
+        border-right: none;
+        border-left: none;
+    }
 
-.sidebar_header{
+.sidebar_header {
     display: flex;
     justify-content: space-between;
-	align-items: center;
+    align-items: center;
     border-bottom: 1px solid #52acc7;
     padding-bottom: 10px;
     padding: 13px;
+}
+
+
+
+.button {
+    background-color: var(--onlyfriends-grey);
+    border: none;
+    color: white;
+    padding: 18px;
+    position: relative;
+    font-size: 18px;
+    width: 100%;
+    cursor: pointer;
+}
+.button:hover{
+    opacity: 0.9;
+    background-color: #52acc7;
+}
+
+.modal {
+    font-size: 12px;
+    border: 1px solid black;
+    background-color: white;
+}
+
+    .modal > .popupheader {
+        width: 100%;
+        border-bottom: 1px solid black;
+        font-size: 18px;
+        text-align: center;
+        background-color: var(--chatter-brown);
+        color: white;
+    }
+
+    .modal > .content {
+        width: 100%;
+        padding: 10px 5px;
+    }
+
+    .modal > .textFieldArea {
+        width: 100%;
+        padding: 0px 30px;
+        margin: auto;
+        text-align: center;
+    }
+
+ 
+
+.addUserIcon {
+    padding: 0px 90px;
+    margin: auto;
+    border-radius: 10px;
+    margin-left: 180px;
+}
+.addUserIcon:hover {
+    cursor: pointer;
+    color: #ffffff;
+    background-color: var(--chatter-button-gray);
+}
+
+.textFieldArea .textFields {
+    margin: 20px;
+    right: 30px;
+}
+
+.textFields2 {
+    margin: 20px;
+    left: 90px;
+}
+.textFields2div {
+    display: none;
+}
+
+.textFields3 {
+    margin: 20px;
+    left: 90px;
+}
+.textFields3div {
+    display: none;
+    margin: 20px;
+}
+
+.textFields4 {
+    margin: 20px;
+    left: 90px;
+}
+.textFields4div {
+    display: none;
+}
+
+.popupButtonArea {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 60px;
+    padding-bottom: 20px;
+}
+
+.popupButton {
+    background-color: var(--chatter-brown);
+    border: none;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    width: 100%;
+    cursor: pointer;
+}
+
+.modal > .close {
+    cursor: pointer;
+    position: absolute;
+    display: block;
+    padding: 2px 5px;
+    line-height: 20px;
+    right: -10px;
+    top: -10px;
+    font-size: 24px;
+    background: #ffffff;
+    border-radius: 18px;
+    border: 1px solid #cfcece;
+}
+
+.error-user{
+    visibility: hidden;
+    color: red;
+    font-size: small;
 }

@@ -1,41 +1,52 @@
-import React, { useState } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import { useStateValue } from "../../StateProvider";
-//import db from "database";
+import Cookies from "js-cookie";
+import apiClient from "../../apiClient";
+import "./ChatInput.css";
+import Message from "./Message";
+import { setEventObj, eventObj, getEventObj } from "./Chat";
 
 export function ChatInput({ channelName, channelId }) {
-	const [input, setInput] = useState("")
-	const [{ user }] = useStateValue()
+  const [input, setInput] = useState('');
+  const [{ user }] = useStateValue();
 
-	const sendMessage = (e) => {
-		e.preventDefault()
 
-		if (!input) return false
+  const sendMessage = (e) => {
+    e.preventDefault()
+
+    if(!input) return false
 
 		if (channelId) {
-			/*db.collection("rooms").doc(channelId).collection("messages").add({
-				message: input,
-				timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-				user: user.displayName,
-				userImage: user.photoURL,
-			})
-		*/}
+			const req = apiClient.put('/conversation/' + channelId, 
+			{"userId":Cookies.get('userid'),"message":input}
+	  , { headers: {"Authorization" : `${Cookies.get('token')}`} })
+	  .then((response) => {
+			console.log(response);
+      if(response.data.event){
+        console.log(response.data.event);
+        setEventObj(response.data.event);
+        console.log(getEventObj());
+      }
+	  }, (error) => {
+		console.log(error);
+	  });}
 
-		setInput("")
-	}
+    setInput('');
+  };
 
-	return (
-		<div className="chatInput">
-			<form>
-				<input
-					value={input}
-					onChange={(e) => setInput(e.target.value)}
-					placeholder={`Message #${channelName}`}
-				/>
-				<button type="submit" onClick={sendMessage}>
-					SEND
-				</button>
-			</form>
-		</div>
-	)
+  return (
+    <div className="chatInput">
+      <form>
+        <input
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder={`Message #${channelName}`}
+        />
+        <button type="submit" onClick={sendMessage}>
+          SEND
+        </button>
+      </form>
+    </div>
+  );
 }
-export default ChatInput
+export default ChatInput;
