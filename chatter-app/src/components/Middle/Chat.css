@@ -1,5 +1,5 @@
 .chat {
-	background-color: white;
+	background-color: var(--chatter-light-grey);
 	flex: 0.7;
 	flex-grow: 1;
 }
