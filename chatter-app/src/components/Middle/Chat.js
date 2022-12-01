@@ -257,7 +257,7 @@ function createConversationBind(channelID) {
 
 	const roomEve = (
 		theEvents.map((event) => (
-			<div>"{event.name}"   What:{event.details}   Why:{event.purpose}   Where:{event.location}    When:{new Date(event.time).toLocaleString()}</div>
+			<div>{">"}"{event.name}"   What:{event.details}   Why:{event.purpose}   Where:{event.location}    When:{new Date(event.time).toLocaleString()}</div>
 		))
 	)
 

@@ -8,6 +8,10 @@
     flex-direction: column;
 }
 
+.events {
+    overflow-y: auto;
+}
+
 .events-top-container{
     display:flex;
     width:100%;
