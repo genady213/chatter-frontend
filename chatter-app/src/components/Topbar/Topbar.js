@@ -6,6 +6,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import EventIcon from '@mui/icons-material/Event';
 import { useStateValue } from '../../StateProvider';
 import Cookies from 'js-cookie';
+import Popup from 'reactjs-popup';
 
 import { useRef } from 'react';
 import apiClient from '../../apiClient';
@@ -71,6 +72,7 @@ const goToEvents = () => {
     console.log('ID:', searchUser._id);
     //Make sure to use tolowerCase() on the value that is getting sent out
     //axios call here to bring back data from that user and do whatever, i.e load a chat message with this individual
+    //Make pop up appear and pre-fill the name
   };
 
   return (
@@ -120,7 +122,9 @@ const goToEvents = () => {
               .slice(0, 7)
               .map((user) => (
                 <div
-                  onClick={() => onSearch(user)}
+                  onClick={() => onSearch(user)
+                  //Pop up
+                  }
                   className="dropdown-content"
                   key={user._id}
                 >
@@ -138,6 +142,7 @@ const goToEvents = () => {
               return user.username === currInput.toLowerCase();
             });
             onSearch(searchValue);
+            //popup
           }}
         >
           <SearchIcon />

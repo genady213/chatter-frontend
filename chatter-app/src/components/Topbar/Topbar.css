@@ -86,6 +86,11 @@
     background-color: white;
     border-radius: 6px;
     margin-left: 4px;
+   
+}
+
+.searchButton:hover{
+     cursor: pointer;
 }
 
 .dropdownsearch {

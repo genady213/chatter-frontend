@@ -1,4 +1,8 @@
 import React from 'react';
+import Cookies from "js-cookie";
+import apiClient from "../../apiClient";
+import { useState,useEffect } from 'react';
+
 import {
     BrowserRouter as Router,
     Routes,
@@ -17,7 +21,21 @@ export function SettingsPage() {
     navigate(path);
   };
 
-  
+ const [username, setUsername] = useState("")
+ const [userID, setUserID] = useState("")
+
+  const getCurrentUser = async () => {
+    const data = await apiClient.get('/user/' + Cookies.get('userid')
+      , { headers: { "Authorization": `${Cookies.get('token')}` } })
+      .then((response) => {
+        setUsername(response.data.username);
+        setUserID(response.data._id)
+      }) 
+  }
+
+  useEffect(() => {
+    getCurrentUser();
+  })
 
   return (
     <div class="settings-body-container">
@@ -37,8 +55,37 @@ export function SettingsPage() {
           </span>
         </div>
       </div>
-
-      
+      <div className="settingsinfo">
+        <h2>General Profile Settings</h2>
+        <hr />
+        <div className="userInfo">
+           
+          <div className="col1">
+            <h3>
+              Username:
+            </h3>
+      <br/>
+             <h3>
+              User ID: 
+            </h3>
+            <br />
+            <h3>
+              Email: 
+            </h3>
+          </div>
+          <div className="col2">
+            <h3>{username}</h3>
+            <br/>
+            <h3>{userID}</h3>
+            <br />
+            <h3>N/A</h3>
+              
+          </div>
+           
+        </div>
+<hr/>
+      </div>
+     
     </div>
   );
 }
