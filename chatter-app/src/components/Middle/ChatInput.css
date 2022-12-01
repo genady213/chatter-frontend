@@ -32,8 +32,9 @@
 
 	.chatInput > form > img {
 		position: fixed;
-		margin-left: 34%;
+		margin-left: 70%;
 		bottom: -17px;
+		z-index: 2;
 	}
 
 .chat_inputBackground {
